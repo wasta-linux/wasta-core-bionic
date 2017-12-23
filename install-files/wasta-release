@@ -1,0 +1,7 @@
+ID=Wasta-Linux
+VERSION=18.04
+CODENAME=bionic
+DESCRIPTION="Wasta-Linux 18.04"
+BASE_ID=ubuntu
+BASE_VERSION=18.04
+BASE_CODENAME=bionic
