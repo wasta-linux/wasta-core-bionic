@@ -103,18 +103,19 @@ then
     exit 1
 fi
 
-echo
-echo "*** Calling app-adjustments.sh script"
-echo
-bash $DIR/scripts/app-adjustments.sh
-LASTERRORLEVEL=$?
-if [ "$LASTERRORLEVEL" -ne "0" ];
-then
-    echo
-    echo " *** ERROR in return from app-adjustments.sh. Exiting."
-    echo
-    exit 1
-fi
+# rik: app-adjustments.sh now in wasta-multidesktop so can be run on login
+# echo
+# echo "*** Calling app-adjustments.sh script"
+# echo
+# bash $DIR/scripts/app-adjustments.sh $AUTO
+# LASTERRORLEVEL=$?
+# if [ "$LASTERRORLEVEL" -ne "0" ];
+# then
+#     echo
+#     echo " *** ERROR in return from app-adjustments.sh. Exiting."
+#     echo
+#     exit 1
+# fi
 
 # ------------------------------------------------------------------------------
 # Finished

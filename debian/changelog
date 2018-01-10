@@ -1,3 +1,10 @@
+wasta-core-bionic (0.1.1) bionic; urgency=medium
+
+  * wasta-core/scripts: removing app-adjustments.sh (now part of
+    wasta-multidesktop-bionic so can be run on login)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 10 Jan 2018 13:45:41 +0300
+
 wasta-core-bionic (0.1.0) bionic; urgency=medium
 
   * initial 18.04 commit
