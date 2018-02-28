@@ -129,7 +129,8 @@ then
     
     # needed for apt-get
     YES="--yes"
-    DEBIAN_FRONTEND="DEBIAN_FRONTEND=noninteractive"
+    DEBIAN_FRONTEND_OPEN="DEBIAN_FRONTEND=noninteractive bash -c'"
+    DEBIAN_FRONTEND_CLOSE="'"
 
     # needed for gdebi
     INTERACTIVE="-n"
@@ -139,7 +140,8 @@ then
 else
     AUTO=""
     YES=""
-    DEBIAN_FRONTEND=""
+    DEBIAN_FRONTEND_OPEN=""
+    DEBIAN_FRONTEND_CLOSE=""
     INTERACTIVE=""
     DPKG_FRONTEND=""
 fi
@@ -360,7 +362,7 @@ echo
 # youtube-dl: terminal utility for youtube / video downloads
 # zim, python-appindicator: wiki style note taking app
 
-$DEBIAN_FRONTEND apt-get $YES install \
+$DEBIAN_FRONTEND_OPEN apt-get $YES install \
     adobe-flashplugin \
     aisleriot \
     apt-rdepends \
@@ -460,7 +462,7 @@ $DEBIAN_FRONTEND apt-get $YES install \
     xsltproc \
     xul-ext-lightning \
     youtube-dl \
-    zim
+    zim $DEBIAN_FRONTEND_CLOSE
 
     LASTERRORLEVEL=$?
     if [ "$LASTERRORLEVEL" -ne "0" ];
