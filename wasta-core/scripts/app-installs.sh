@@ -129,8 +129,7 @@ then
     
     # needed for apt-get
     YES="--yes"
-    DEBIAN_FRONTEND_OPEN="(export DEBIAN_FRONTEND=noninteractive; "
-    DEBIAN_FRONTEND_CLOSE=")"
+    DEBIAN_NONINTERACTIVE="DEBIAN_FRONTEND=noninteractive"
 
     # needed for gdebi
     INTERACTIVE="-n"
@@ -140,8 +139,7 @@ then
 else
     AUTO=""
     YES=""
-    DEBIAN_FRONTEND_OPEN=""
-    DEBIAN_FRONTEND_CLOSE=""
+    DEBIAN_NONINTERACTIVE=""
     INTERACTIVE=""
     DPKG_FRONTEND=""
 fi
@@ -291,7 +289,7 @@ echo
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
 # gnome-search-tool: more in-depth search than nemo gives
-# gnome-software: not great but currently no better option
+# gnome-software: not great but currently no better option ****BIONIC temporarily removed due to dependency conflicts???
 # gparted: partition manager
 # grsync: GUI rsync tool
 # gufw: GUI for "uncomplicated firewall"
@@ -362,7 +360,7 @@ echo
 # youtube-dl: terminal utility for youtube / video downloads
 # zim, python-appindicator: wiki style note taking app
 
-$DEBIAN_FRONTEND_OPEN apt-get $YES install \
+$DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     adobe-flashplugin \
     aisleriot \
     apt-rdepends \
@@ -404,7 +402,6 @@ $DEBIAN_FRONTEND_OPEN apt-get $YES install \
     gnome-font-viewer \
     gnome-nettool \
     gnome-search-tool \
-    gnome-software \
     gparted \
     grsync \
     gufw \
@@ -462,7 +459,8 @@ $DEBIAN_FRONTEND_OPEN apt-get $YES install \
     xsltproc \
     xul-ext-lightning \
     youtube-dl \
-    zim $DEBIAN_FRONTEND_CLOSE
+    zim \
+    "
 
     LASTERRORLEVEL=$?
     if [ "$LASTERRORLEVEL" -ne "0" ];
