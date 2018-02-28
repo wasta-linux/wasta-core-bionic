@@ -129,8 +129,8 @@ then
     
     # needed for apt-get
     YES="--yes"
-    DEBIAN_FRONTEND_OPEN="DEBIAN_FRONTEND=noninteractive bash -c'"
-    DEBIAN_FRONTEND_CLOSE="'"
+    DEBIAN_FRONTEND_OPEN="(export DEBIAN_FRONTEND=noninteractive; "
+    DEBIAN_FRONTEND_CLOSE=")"
 
     # needed for gdebi
     INTERACTIVE="-n"
