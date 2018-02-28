@@ -314,7 +314,7 @@ chown -f syslog:adm /var/log/mail.log*
 #   QT_QPA_PLATFORMTHEME=gtk2
 #   QT_STYLE_OVERRIDE=gtk2
 QT_QPA_FOUND=$(grep QT_QPA_PLATFORMTHEME /etc/environment)
-if ("$QT_QPA_FOUND" == "");
+if [ "$QT_QPA_FOUND" == "" ];
 then
     echo
     echo "*** Ensuring Qt app theme compatibilty"
