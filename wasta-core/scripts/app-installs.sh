@@ -303,7 +303,7 @@ echo
 # inkscape: vector graphics editor
 # inotify-tools: terminal utility to watch for file changes
 # iperf: terminal utility for network bandwidth measuring
-# kdenlive: video editor
+# kdenlive: video editor ****BIONIC temporarily removed due to dependency conflicts???
 # keepassx: password manager
 # klavaro: typing tutor
 # kmfl-keyboard-ipa: ipa keyboard for kmfl
@@ -415,7 +415,6 @@ $DEBIAN_FRONTEND apt-get $YES install \
     inkscape \
     inotify-tools \
     iperf \
-    kdenlive \
     keepassx \
     klavaro \
     kmfl-keyboard-ipa \
