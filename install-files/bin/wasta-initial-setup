@@ -70,6 +70,8 @@ fi
 # Initial Setup
 # ------------------------------------------------------------------------------
 
+CURRENT_USER="${SUDO_USER:-$USER}"
+
 # if 'auto' parameter passed, run non-interactively
 if [ "$1" == "auto" ];
 then
@@ -168,7 +170,7 @@ echo
 echo "*** Calling wasta-reset to re-initialize Wasta-Linux settings"
 echo
 # attempt to call as current user.  If root then wasta-reset will just exit.
-su "$USER" -c "wasta-reset $AUTO"
+su "$CURRENT_USER" -c "wasta-reset $AUTO"
 LASTERRORLEVEL=$?
 if [ "$LASTERRORLEVEL" -ne "0" ];
 then

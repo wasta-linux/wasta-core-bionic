@@ -260,7 +260,7 @@ fi
 # ------------------------------------------------------------------------------
 # lightdm: set as display manager:
 echo "lightdm shared/default-x-display-manager select lightdm" \
-    | debconf-set-selections
+    | debconf-set-selectionsz
 
 # libdvd-pkg
 # don't think needed: libdvd-pkg libdvd-pkg/post-invoke_hook-remove boolean false

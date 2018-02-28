@@ -45,6 +45,7 @@
 #   2016-07-29 rik: cinnamon: explicitly resetting the schemas instead of
 #       relying on the rescursive reset of org.cinnamon: some sub-schemas
 #       weren't getting reset otherwise.
+#   2018-02-28 rik: updating ubuntu.session to reset gnome not unity
 #
 # ==============================================================================
 
@@ -58,10 +59,12 @@ then
     exit 0
 fi
 
+read -p "user: $USER"
+read -p "whoami: $(whoami)"
+
 # ------------------------------------------------------------------------------
 # Initial Setup
 # ------------------------------------------------------------------------------
-
 
 # if 'auto' parameter passed, run non-interactively
 if [ "$1" == "auto" ];
@@ -177,7 +180,9 @@ then
     # --------------------------------------------------------------------------
     # If detected, reset Gnome-Shell settings to defaults
     # --------------------------------------------------------------------------
-    if [ -e /usr/share/xsessions/gnome.desktop ];
+    # bionic: need to detect on ubuntu.desktop since gnome.desktop not installed
+    # by default
+    if [ -e /usr/share/xsessions/ubuntu.desktop ] | [ -e /usr/share/xsessions/gnome.desktop ];
     then
         # save Gnome specific settings
         SAVE_GNOME_FAVORITES=$(gsettings get org.gnome.shell favorite-apps)
@@ -190,24 +195,6 @@ then
         gsettings set org.gnome.shell favorite-apps "$SAVE_GNOME_FAVORITES"
 
         MSG+="User settings for <b>GNOME Desktop</b> reset.\n\n"
-    fi
-
-    # --------------------------------------------------------------------------
-    # If detected, reset Unity settings to defaults
-    # --------------------------------------------------------------------------
-    if [ -e /usr/share/xsessions/ubuntu.desktop ];
-    then
-        # save Unity specific settings
-        SAVE_UNITY_FAVORITES=$(gsettings get com.canonical.Unity.Launcher favorites)
-
-        # Unity Reset
-        dconf reset -f /com/canonical/
-        gsettings reset-recursively org.compiz
-
-        # restore Unity specific settings
-        gsettings set com.canonical.Unity.Launcher favorites "$SAVE_UNITY_FAVORITES"
-
-        MSG+="User settings for <b>Ubuntu Unity Desktop</b> reset.\n\n"
     fi
 fi
 

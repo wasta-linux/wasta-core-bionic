@@ -1,3 +1,17 @@
+wasta-core-bionic (0.2.3) bionic; urgency=medium
+
+  * wasta-initial-setup: running wasta-reset as logged in user
+  * wasta-reset: correcting ubuntu.session to perform gnome-shell
+    reset
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 28 Feb 2018 20:02:13 +0300
+
+wasta-core-bionic (0.2.2) bionic; urgency=medium
+
+  * control: adding debconf-utils dependency (needed by postinst)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 28 Feb 2018 13:47:23 +0300
+
 wasta-core-bionic (0.2.1) bionic; urgency=medium
 
   * postinst: syntax fix for qt compatiblity adjustment

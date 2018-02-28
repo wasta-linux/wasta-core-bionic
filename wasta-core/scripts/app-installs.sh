@@ -129,13 +129,19 @@ then
     
     # needed for apt-get
     YES="--yes"
-    
+    DEBIAN_FRONTEND="DEBIAN_FRONTEND=noninteractive"
+
     # needed for gdebi
     INTERACTIVE="-n"
+
+    # needed for dpkg-reconfigure
+    DPKG_FRONTEND="--frontend=noninteractive"
 else
     AUTO=""
     YES=""
+    DEBIAN_FRONTEND=""
     INTERACTIVE=""
+    DPKG_FRONTEND=""
 fi
 
 # ------------------------------------------------------------------------------
@@ -354,7 +360,7 @@ echo
 # youtube-dl: terminal utility for youtube / video downloads
 # zim, python-appindicator: wiki style note taking app
 
-apt-get $YES install \
+$DEBIAN_FRONTEND apt-get $YES install \
     adobe-flashplugin \
     aisleriot \
     apt-rdepends \
@@ -502,7 +508,7 @@ apt-get $YES install $INSTALL_APPS
 # ------------------------------------------------------------------------------
 # during the install of libdvd-pkg it can't in turn install libdvdcss2 since
 #   another dpkg process is already active, so need to do it again
-dpkg-reconfigure libdvd-pkg
+dpkg-reconfigure $DPKG_FRONTEND libdvd-pkg
 
 # ------------------------------------------------------------------------------
 # Clean up apt cache
