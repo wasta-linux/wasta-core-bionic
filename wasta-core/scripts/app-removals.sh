@@ -33,6 +33,7 @@
 #       - adding gnome-sushi, nemo-preview (confusing for some)
 #   2016-10-02 rik: adding gnome-flashback, mpv
 #   2016-11-09 rik: adding 'whoopsie'
+#   2018-02-28 rik: removing gnome-software (for bionic we will need to use it)
 #
 # ==============================================================================
 
@@ -91,13 +92,10 @@ echo
 # glipper: we now use diodon
 # gnome-flashback: not sure how this got installed, but don't want as default
 # gnome-orca: screen reader
-# gnome-software: removing until we can sort out how to add SIL, PPA apps
-#   and "non-gui" apps.
 # gnome-sushi unoconv:confusing for some
 # landscape-client-ui-install: pay service only for big corporations
 # mpv: media player - not sure how this got installed
 # nemo-preview: confusing for some
-# openshot: now use openshot-qt (2.x) ... openshot is 1.4.x
 # totem: not needed as vlc handles all video/audio
 # transmission: normal users doing torrents probably isn't preferred
 # ttf-* fonts: non-english font families
@@ -125,12 +123,10 @@ pkgToRemoveListFull="\
     glipper \
     gnome-flashback \
     gnome-orca \
-    gnome-software \
     gnome-sushi unoconv \
     landscape-client-ui-install \
     mpv \
     nemo-preview \
-    openshot \
     totem \
         totem-common \
         totem-plugins \

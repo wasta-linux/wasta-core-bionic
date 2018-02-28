@@ -1,3 +1,14 @@
+wasta-core-bionic (0.2.0) bionic; urgency=medium
+
+  * postinst: added debconf-set-selections
+    - updated qt compatibility code
+  * app-installs: added kdenlive
+    - added gnome-software
+    - removed openshot
+  * app-removals: removed gnome-software
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 28 Feb 2018 10:22:39 +0300
+
 wasta-core-bionic (0.1.1) bionic; urgency=medium
 
   * wasta-core/scripts: removing app-adjustments.sh (now part of

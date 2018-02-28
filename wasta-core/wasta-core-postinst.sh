@@ -32,6 +32,7 @@
 #   2017-11-29 rik: initial script for wasta-core-bionic
 #   2017-12-20 rik: removing branding items (plymouth, etc.) as they are now
 #       in wasta-multidesktop
+#   2018-02-28 rik: adjusting qt compatibilty tweaks
 #
 # ==============================================================================
 
@@ -255,6 +256,24 @@ then
 fi
 
 # ------------------------------------------------------------------------------
+# preseed debconf with settings so user NOT prompted on package installs, etc.
+# ------------------------------------------------------------------------------
+# lightdm: set as display manager:
+echo "lightdm shared/default-x-display-manager select lightdm" \
+    | debconf-set-selections
+
+# libdvd-pkg
+# don't think needed: libdvd-pkg libdvd-pkg/post-invoke_hook-remove boolean false
+echo "libdvd-pkg libdvd-pkg/build boolean true" \
+    | debconf-set-selections
+echo "libdvd-pkg libdvd-pkg/post-invoke_hook-install boolean true" \
+    | debconf-set-selections
+
+# ttf-mscorefonts-installer
+echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula boolean true" \
+    | debconf-set-selections
+
+# ------------------------------------------------------------------------------
 # openssh server re-config
 # ------------------------------------------------------------------------------
 # machines created from ISO from Remastersys 3.0.4 stock will have some key files
@@ -278,9 +297,7 @@ fi
 # ------------------------------------------------------------------------------
 # log permissions cleanup
 # ------------------------------------------------------------------------------
-
 # 2017-11-29 rik: **** NEEDED FOR BIONIC? ****
-
 # some logs need different ownership than "root:root"
 # remastersys doesn't do this right, check if fixed in wasta-remastersys?
 chown -f syslog:adm /var/log/syslog*
@@ -291,12 +308,19 @@ chown -f syslog:adm /var/log/mail.log*
 # ------------------------------------------------------------------------------
 # qt5 app theme adjustment
 # ------------------------------------------------------------------------------
-echo
-echo "*** Ensuring Qt app theme compatibilty"
-echo
-sed -i -e '$a QT5_QPA_PLATFORMTHEME=gtk2' \
-    -i -e '\#QT5_QPA_PLATFORMTHEME#d' \
-    /etc/environment
+# note: MAY need combo of: (previously I had done QT5_QPA_PLATFORMTHEME but
+#   I don't think it is used / needed anymore???
+#   QT5_QPA_PLATFORMTHEME=gtk2
+#   QT_QPA_PLATFORMTHEME=gtk2
+#   QT_STYLE_OVERRIDE=gtk2
+QT_QPA_FOUND=$(grep QT_QPA_PLATFORMTHEME /etc/environment)
+if ("$QT_QPA_FOUND" == "");
+then
+    echo
+    echo "*** Ensuring Qt app theme compatibilty"
+    echo
+    sed -i -e '$a QT_QPA_PLATFORMTHEME=gtk2' /etc/environment
+fi
 
 # ------------------------------------------------------------------------------
 # disable apport error reporting
@@ -316,17 +340,13 @@ fi
 # ------------------------------------------------------------------------------
 # usb_modeswitch: enable SetStorageDelay
 # ------------------------------------------------------------------------------
-# 2017-11-29 rik: **** NEEDED FOR BIONIC? ****
-#if [ -e /etc/usb_modeswitch.conf ];
-#then
-#    echo
-#    echo "*** usb_modeswitch: enabling SetStorageDelay"
-#    echo
-#    sed -i -e 's@#.*\(SetStorageDelay\)=.*@\1=4@' /etc/usb_modeswitch.conf
-
-#    # LEGACY fix: original sed changed =4 to =4=4
-#    sed -i -e 's@=4=4@=4@g' /etc/usb_modeswitch.conf
-#fi
+if [ -e /etc/usb_modeswitch.conf ];
+then
+    echo
+    echo "*** usb_modeswitch: enabling SetStorageDelay"
+    echo
+    sed -i -e 's@#.*\(SetStorageDelay\)=.*@\1=4@' /etc/usb_modeswitch.conf
+fi
 
 # ------------------------------------------------------------------------------
 # Dconf / Gsettings Default Value adjustments
@@ -359,12 +379,11 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/ # > /dev/null 2>&1 || true;
 # ------------------------------------------------------------------------------
 # Reduce "Swappiness"
 # ------------------------------------------------------------------------------
-# 2017-11-29 rik: **** NEEDED FOR BIONIC? ****
 # https://sites.google.com/site/easylinuxtipsproject/first
 #   (default is 60, which means it goes to swap too quickly when low ram)
-#sed -i -e '$a vm.swappiness=10' \
-#    -i -e '\#vm.swappiness#d' \
-#    /etc/sysctl.conf
+sed -i -e '$a vm.swappiness=10' \
+    -i -e '\#vm.swappiness#d' \
+    /etc/sysctl.conf
 
 # ------------------------------------------------------------------------------
 # Allow Shockwave Flash videos to play in browser

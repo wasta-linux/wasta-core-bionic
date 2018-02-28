@@ -70,7 +70,8 @@
 #   2016-10-05 rik: changing 'ubiquity' to install 'no-recommends' or else will
 #       pull in all the kde dependencies.
 #   2017-03-14 rik: adding bloom-desktop, art-of-reading, hfsprogs, gddrescue
-#   2017-11-29 rik: initial bionic version
+#   2017-11-29 rik: initial bionic version: adding kdenlive, removing openshot,
+#       adding gnome-software
 #
 # ==============================================================================
 
@@ -250,7 +251,6 @@ echo
 # adobe-flashplugin: flash
 # aisleriot: solitare game
 # apt-rdepends: reverse dependency lookup
-# apt-xapian-index: for synpatic indexing
 # art-of-reading: for bloom **** BIONIC NOT AVAILABLE (yet) ****
 # audacity: audio editing
 # asunder: cd ripper
@@ -283,6 +283,7 @@ echo
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
 # gnome-search-tool: more in-depth search than nemo gives
+# gnome-software: not great but currently no better option
 # gparted: partition manager
 # grsync: GUI rsync tool
 # gufw: GUI for "uncomplicated firewall"
@@ -296,6 +297,7 @@ echo
 # inkscape: vector graphics editor
 # inotify-tools: terminal utility to watch for file changes
 # iperf: terminal utility for network bandwidth measuring
+# kdenlive: video editor
 # keepassx: password manager
 # klavaro: typing tutor
 # kmfl-keyboard-ipa: ipa keyboard for kmfl
@@ -311,9 +313,6 @@ echo
 # mtpfs, mtp-tools: media-transfer-protocol tools: needed for smartphones **** mtpfs BIONIC NOT AVAILABLE ****
 # myspell-en-gb: spell checker for English (UK): needed for Libre Office
 # nautilus-compare: nautilus integration with meld
-# openshot-qt: video editor (-qt is the 2.x series)
-#   openshot-doc: documentation for openshot
-#   frei0r-plugins: visual effects for openshot
 # pandoc: general markup converter
 # pinta: MS Paint alternative: more simple for new users than gimp
 # python-appindicator: needed for zim app-indicator (maybe others?)
@@ -329,6 +328,7 @@ echo
 # software-center: re-adding until gnome-software does what we need it
 #   to do. **** BIONIC NOT AVAILABLE ****
 # synaptic: more advanced package manager
+#   - apt-xapian-index: for synpatic indexing
 # testdisk: photorec tool for recovery of deleted files
 # traceroute: terminal utility
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
@@ -396,6 +396,7 @@ apt-get $YES install \
     gnome-font-viewer \
     gnome-nettool \
     gnome-search-tool \
+    gnome-software \
     gparted \
     grsync \
     gufw \
@@ -408,6 +409,7 @@ apt-get $YES install \
     inkscape \
     inotify-tools \
     iperf \
+    kdenlive \
     keepassx \
     klavaro \
     kmfl-keyboard-ipa \
@@ -422,7 +424,6 @@ apt-get $YES install \
     modem-manager-gui \
     mtp-tools \
     nautilus-compare \
-    openshot-qt frei0r-plugins \
     pandoc \
     pinta \
     python-appindicator \
@@ -435,7 +436,7 @@ apt-get $YES install \
     soundconverter \
     sound-juicer \
     ssh \
-    synaptic \
+    synaptic apt-xapian-index \
     testdisk \
     traceroute \
     ttf-mscorefonts-installer \
@@ -478,7 +479,7 @@ apt-get $YES install $INSTALL_APPS
 # 32-bit installs if needed for 64 bit machines
 # ------------------------------------------------------------------------------
 # get machine architecture so will either install 64bit or 32bit
-MACHINE_TYPE=$(uname -m)
+#MACHINE_TYPE=$(uname -m)
 
 # **** NEEDED for 18.04 BIONIC *****??
 # if [ $MACHINE_TYPE == 'x86_64' ];
