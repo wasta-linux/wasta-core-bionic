@@ -72,6 +72,7 @@
 #   2017-03-14 rik: adding bloom-desktop, art-of-reading, hfsprogs, gddrescue
 #   2017-11-29 rik: initial bionic version: adding kdenlive, removing openshot,
 #       adding gnome-software
+#   2018-03-05 rik: adding dkms
 #
 # ==============================================================================
 
@@ -271,6 +272,7 @@ echo
 # dconf-cli, dconf-tools: gives tools for making settings adjustments
 # debconf-utils: needed for debconf-get-selections, etc. for debconf configure
 # diodon: clipboard manager
+# dkms: "Dynamic Kernel Module Support" (needed by virtualbox, broadcom, etc.)
 # dos2unix: convert line endings of text files to / from windows to unix
 # exfat-fuse, exfat-utils: compatibility for exfat formatted disks
 # extundelete: terminal utility to restore deleted files
@@ -378,6 +380,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
         dconf-tools \
     debconf-utils \
     diodon \
+    dkms \
     dos2unix \
     exfat-fuse \
         exfat-utils \
