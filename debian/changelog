@@ -1,3 +1,10 @@
+wasta-core-bionic (0.3.0) bionic; urgency=medium
+
+  * app-installs.sh: removing gnome-search-tool (not found)
+    - adding kdenlive
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 02 Apr 2018 10:51:08 +0300
+
 wasta-core-bionic (0.2.4) bionic; urgency=medium
 
   * app-installs: adding dkms (needed by virtualbox, broadcom, etc.)

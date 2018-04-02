@@ -73,6 +73,8 @@
 #   2017-11-29 rik: initial bionic version: adding kdenlive, removing openshot,
 #       adding gnome-software
 #   2018-03-05 rik: adding dkms
+#   2018-03-14 rik: various bionic updates
+#   2018-04-03 rik: gnome-search-tool seems to have been removed from bionic?
 #
 # ==============================================================================
 
@@ -281,7 +283,7 @@ echo
 # fonts-crosextra-caladea: metrically compatible with "Cambria"
 # fonts-crosextra-carlito: metrically compatible with "Calibri"
 # fonts-sil-*: standard SIL fonts
-# gcolor3: color picker **** BIONIC NOT AVAILABLE ****
+# gcolor3: color pickerg
 # gddrescue: data recovery tool
 # gdebi: graphical .deb installer
 # gimp: advanced graphics editor
@@ -290,8 +292,7 @@ echo
 # gnome-clocks: multi-timezone clocks, timers, alarms
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
-# gnome-search-tool: more in-depth search than nemo gives
-# gnome-software: not great but currently no better option ****BIONIC temporarily removed due to dependency conflicts???
+# gnome-search-tool: more in-depth search than nemo gives **** BIONIC not found??? ****
 # gparted: partition manager
 # grsync: GUI rsync tool
 # gufw: GUI for "uncomplicated firewall"
@@ -305,20 +306,21 @@ echo
 # inkscape: vector graphics editor
 # inotify-tools: terminal utility to watch for file changes
 # iperf: terminal utility for network bandwidth measuring
-# kdenlive: video editor ****BIONIC temporarily removed due to dependency conflicts???
-# keepassx: password manager
+# kdenlive: video editor
+# keepassxc: password manager (xc is the community port that is more up to date)
 # klavaro: typing tutor
 # kmfl-keyboard-ipa: ipa keyboard for kmfl
 # lame: MP3 encoder
 # libdvd-pkg: enables DVD playback (downloads and installs libdvdcss2)
 # libreoffice-base
+# libreoffice-gtk2:
 # libreoffice-sdbc-hsqldb: db backend for LO base
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
 # meld: graphical text file compare utility
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
-# mtpfs, mtp-tools: media-transfer-protocol tools: needed for smartphones **** mtpfs BIONIC NOT AVAILABLE ****
+# mtp-tools: media-transfer-protocol tools: needed for smartphones
 # myspell-en-gb: spell checker for English (UK): needed for Libre Office
 # nautilus-compare: nautilus integration with meld
 # pandoc: general markup converter
@@ -333,18 +335,14 @@ echo
 # soundconverter: convert audio formats
 # sound-juicer: rip CDs
 # ssh: remote access
-# software-center: re-adding until gnome-software does what we need it
-#   to do. **** BIONIC NOT AVAILABLE ****
 # synaptic: more advanced package manager
 #   - apt-xapian-index: for synpatic indexing
 # testdisk: photorec tool for recovery of deleted files
 # traceroute: terminal utility
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
-# ubiquity: done with --no-install-recommends so don't pull kde stuff
-#   - ubiquity installed here since needed to be customized for Ethiopia
-#   in app-adjustments.sh
-# ubiquity-frontend-gtk ubiquity-slideshow-ubuntu:
-#   add here so not needed to be downloaded by wasta-remastersys
+# ubiquity-frontend-gtk: add here so not needed to be downloaded by wasta-remastersys or if needs to be updated by app-adjustments.sh
+# ubiquity-slideshow-wasta:
+# ubuntu-software: not great but currently no better option
 # ubuntu-restricted-extras: mp3, flash, etc.
 # ubuntu-wallpapers-*: wallpaper collections
 # vim-tiny: terminal text editor (don't want FULL vim or else in main menu)
@@ -395,6 +393,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
         fonts-sil-doulos \
         fonts-sil-gentiumplus \
         fonts-sil-gentiumpluscompact \
+    gcolor3 \
     gddrescue \
     gdebi \
     gimp \
@@ -404,7 +403,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     gnome-clocks \
     gnome-font-viewer \
     gnome-nettool \
-    gnome-search-tool \
     gparted \
     grsync \
     gufw \
@@ -417,11 +415,13 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     inkscape \
     inotify-tools \
     iperf \
-    keepassx \
+    kdenlive \
+    keepassxc \
     klavaro \
     kmfl-keyboard-ipa \
     lame \
     libdvd-pkg \
+    libreoffice-gtk2 \
     libreoffice-base \
     libreoffice-sdbc-hsqldb \
     libreoffice-style-tango \
@@ -447,7 +447,9 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     testdisk \
     traceroute \
     ttf-mscorefonts-installer \
-    ubiquity-frontend-gtk ubiquity-slideshow-ubuntu \
+    ubiquity-frontend-gtk \
+    ubiquity-slideshow-wasta \
+    ubuntu-software \
     ubuntu-restricted-extras \
     vim-tiny \
     vlc \

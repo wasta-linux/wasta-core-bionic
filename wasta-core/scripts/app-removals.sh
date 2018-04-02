@@ -34,6 +34,7 @@
 #   2016-10-02 rik: adding gnome-flashback, mpv
 #   2016-11-09 rik: adding 'whoopsie'
 #   2018-02-28 rik: removing gnome-software (for bionic we will need to use it)
+#   2018-03-14 rik: adding libreoffice-gtk3 (justin recommends -gtk2)
 #
 # ==============================================================================
 
@@ -94,6 +95,7 @@ echo
 # gnome-orca: screen reader
 # gnome-sushi unoconv:confusing for some
 # landscape-client-ui-install: pay service only for big corporations
+# libreoffice-gtk3: Justin recommends using -gtk2 for 18.04
 # mpv: media player - not sure how this got installed
 # nemo-preview: confusing for some
 # totem: not needed as vlc handles all video/audio
@@ -125,6 +127,7 @@ pkgToRemoveListFull="\
     gnome-orca \
     gnome-sushi unoconv \
     landscape-client-ui-install \
+    libreoffice-gtk3 \
     mpv \
     nemo-preview \
     totem \
