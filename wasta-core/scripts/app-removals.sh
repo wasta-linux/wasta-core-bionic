@@ -35,6 +35,8 @@
 #   2016-11-09 rik: adding 'whoopsie'
 #   2018-02-28 rik: removing gnome-software (for bionic we will need to use it)
 #   2018-03-14 rik: adding libreoffice-gtk3 (justin recommends -gtk2)
+#   2018-04-02 rik: adding blueman and metacity-common (not sure why cinnamon
+#       lists them as 'recommends')
 #
 # ==============================================================================
 
@@ -81,6 +83,7 @@ echo
 echo "*** Removing Unwanted Applications"
 echo
 
+# blueman: not sure why cinnamon has this listed as a 'recommends'
 # checkbox-common:
 #   - but removing it will remove ubuntu-desktop so not removing
 # deja-dup: we use wasta-backup
@@ -96,6 +99,7 @@ echo
 # gnome-sushi unoconv:confusing for some
 # landscape-client-ui-install: pay service only for big corporations
 # libreoffice-gtk3: Justin recommends using -gtk2 for 18.04
+# metacity-common: not sure why cinnamon has this listed as a 'recommends'
 # mpv: media player - not sure how this got installed
 # nemo-preview: confusing for some
 # totem: not needed as vlc handles all video/audio
@@ -112,6 +116,7 @@ echo
 #   will error and not remove anything.  So instead found this way to do it:
 #       http://superuser.com/questions/518859/ignore-packages-that-are-not-currently-installed-when-using-apt-get-remove
 pkgToRemoveListFull="\
+    blueman \
     deja-dup \
     empathy-common \
     fonts-noto-cjk \
@@ -128,6 +133,7 @@ pkgToRemoveListFull="\
     gnome-sushi unoconv \
     landscape-client-ui-install \
     libreoffice-gtk3 \
+    metacity-common \
     mpv \
     nemo-preview \
     totem \
