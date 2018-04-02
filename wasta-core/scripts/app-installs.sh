@@ -76,6 +76,8 @@
 #   2018-03-14 rik: various bionic updates
 #   2018-04-03 rik: gnome-search-tool seems to have been removed from bionic?
 #       - removing asunder (sound-juicer already included)
+#       - adding gnome-calculator, gnome-logs, gnome-sytem-monitor, gucharmap
+#       since bionic defaults are as snaps
 #
 # ==============================================================================
 
@@ -289,12 +291,16 @@ echo
 # gimp: advanced graphics editor
 # git: command-line git
 # goldendict: more advanced dictionary/thesaurus tool than artha
+# gnome-calculator
 # gnome-clocks: multi-timezone clocks, timers, alarms
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
+# gnome-logs
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
 # gnome-search-tool: more in-depth search than nemo gives **** BIONIC not found??? ****
+# gnome-system-monitor:
 # gparted: partition manager
 # grsync: GUI rsync tool
+# gucharmap: gnome character map (traditional)
 # gufw: GUI for "uncomplicated firewall"
 # hardinfo: system profiler
 # hddtemp: harddrive temp checker
@@ -399,11 +405,15 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     git \
     goldendict \
         goldendict-wordnet \
+    gnome-calculator \
     gnome-clocks \
     gnome-font-viewer \
+    gnome-logs \
     gnome-nettool \
+    gnome-system-monitor \
     gparted \
     grsync \
+    gucharmap \
     gufw \
     hardinfo \
     hddtemp \

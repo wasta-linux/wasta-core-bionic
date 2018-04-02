@@ -164,6 +164,14 @@ done
 
 apt-get $YES purge $pkgToRemoveList
 
+# rik: these snaps don't integrate well with the theme and are slow to start
+#   so for 18.04 we will REMOVE them and install their traditional counterparts
+snap remove \
+    gnome-calculator \
+    gnome-characters \
+    gnome-logs \
+    gnome-system-monitor
+
 # ------------------------------------------------------------------------------
 # run autoremove to cleanout unneeded dependent packages
 # ------------------------------------------------------------------------------

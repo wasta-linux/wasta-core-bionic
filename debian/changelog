@@ -1,4 +1,12 @@
-wasta-core-bionic (0.3.1ubuntu1) bionic; urgency=medium
+wasta-core-bionic (0.3.2) bionic; urgency=medium
+
+  * app-installs.sh: adding gnome-calculator, gnome-logs,
+    gnome-system-monitor, gucharmap
+  * app-removals.sh: removing gnome app snaps
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 02 Apr 2018 18:53:08 +0300
+
+wasta-core-bionic (0.3.1) bionic; urgency=medium
 
   * app-installs.sh: removing asunder (already have sound-juicer)
 
