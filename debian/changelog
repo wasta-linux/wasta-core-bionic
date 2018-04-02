@@ -1,3 +1,9 @@
+wasta-core-bionic (0.3.1ubuntu1) bionic; urgency=medium
+
+  * app-installs.sh: removing asunder (already have sound-juicer)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 02 Apr 2018 14:58:26 +0300
+
 wasta-core-bionic (0.3.1) bionic; urgency=medium
 
   * app-removals.sh: adding blueman and metacity-common (they

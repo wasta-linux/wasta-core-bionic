@@ -75,6 +75,7 @@
 #   2018-03-05 rik: adding dkms
 #   2018-03-14 rik: various bionic updates
 #   2018-04-03 rik: gnome-search-tool seems to have been removed from bionic?
+#       - removing asunder (sound-juicer already included)
 #
 # ==============================================================================
 
@@ -262,7 +263,6 @@ echo
 # apt-rdepends: reverse dependency lookup
 # art-of-reading: for bloom **** BIONIC NOT AVAILABLE (yet) ****
 # audacity: audio editing
-# asunder: cd ripper
 # bloom-desktop: sil bloom **** BIONIC NOT AVAILABLE (yet) ****
 # bookletimposer: pdf booklet / imposition tool
 # brasero: CD/DVD burner
@@ -366,7 +366,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     apt-rdepends \
     apt-xapian-index \
     audacity \
-    asunder \
     bookletimposer \
     brasero \
     btrfs-tools \

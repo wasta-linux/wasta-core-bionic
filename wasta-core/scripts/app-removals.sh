@@ -97,6 +97,7 @@ echo
 # gnome-flashback: not sure how this got installed, but don't want as default
 # gnome-orca: screen reader
 # gnome-sushi unoconv:confusing for some
+# keepassx: keepassxc now preferred
 # landscape-client-ui-install: pay service only for big corporations
 # libreoffice-gtk3: Justin recommends using -gtk2 for 18.04
 # metacity-common: not sure why cinnamon has this listed as a 'recommends'
@@ -131,6 +132,7 @@ pkgToRemoveListFull="\
     gnome-flashback \
     gnome-orca \
     gnome-sushi unoconv \
+    keepassx \
     landscape-client-ui-install \
     libreoffice-gtk3 \
     metacity-common \
