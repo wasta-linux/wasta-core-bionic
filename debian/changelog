@@ -1,3 +1,9 @@
+wasta-core-bionic (1.0.2) bionic; urgency=medium
+
+  * app-removals.sh: not removing metacity (or else cinnamon uninstalled)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 23 May 2018 14:22:38 +0300
+
 wasta-core-bionic (1.0.1) bionic; urgency=medium
 
   * app-installs.sh: adding catfish, sil compact fonts, nethogs

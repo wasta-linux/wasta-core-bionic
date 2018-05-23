@@ -37,6 +37,7 @@
 #   2018-03-14 rik: adding libreoffice-gtk3 (justin recommends -gtk2)
 #   2018-04-02 rik: adding blueman and metacity-common (not sure why cinnamon
 #       lists them as 'recommends')
+#   2018-05-23 rik: not removing metacity: this will cause cinnamon to be removed
 #
 # ==============================================================================
 
@@ -100,7 +101,6 @@ echo
 # keepassx: keepassxc now preferred
 # landscape-client-ui-install: pay service only for big corporations
 # libreoffice-gtk3: Justin recommends using -gtk2 for 18.04
-# metacity-common: not sure why cinnamon has this listed as a 'recommends'
 # mpv: media player - not sure how this got installed
 # nemo-preview: confusing for some
 # totem: not needed as vlc handles all video/audio
@@ -135,7 +135,6 @@ pkgToRemoveListFull="\
     keepassx \
     landscape-client-ui-install \
     libreoffice-gtk3 \
-    metacity-common \
     mpv \
     nemo-preview \
     totem \
