@@ -1,3 +1,9 @@
+wasta-core-bionic (1.0.1) bionic; urgency=medium
+
+  * app-installs.sh: adding catfish, sil compact fonts, nethogs
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 23 May 2018 11:50:52 +0300
+
 wasta-core-bionic (1.0.0) bionic; urgency=medium
 
   * app-installs.sh: adding mate-search-tool, redshift-gtk, papirus-icon-theme

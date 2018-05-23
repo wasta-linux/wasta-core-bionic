@@ -78,7 +78,8 @@
 #       - removing asunder (sound-juicer already included)
 #       - adding gnome-calculator, gnome-logs, gnome-sytem-monitor, gucharmap
 #       since bionic defaults are as snaps
-#   2018-05-23 rik: adding mate-search-tool, redshift-gtk, papirus-icon-theme
+#   2018-05-23 rik: adding catfish, redshift-gtk, papirus-icon-theme
+#       nethogs, sil compact fonts
 #
 # ==============================================================================
 
@@ -269,6 +270,7 @@ echo
 # bookletimposer: pdf booklet / imposition tool
 # brasero: CD/DVD burner
 # btrfs-tools: filesystem utilities
+# catfish: more in-depth search than nemo gives (gnome-search-tool not available)
 # cheese: webcam recorder, picture taker
 # cifs-utils: "common internet filesystem utils" for fileshare utilities, etc.
 # clamtk, clamtk-nautilus: GUI for clamav antivirus tool
@@ -322,13 +324,13 @@ echo
 # libreoffice-sdbc-hsqldb: db backend for LO base
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
-# mate-search-tool: more in-depth search than nemo gives (formerly gnome-search-tool but dropped for bionic so using mate alternative)
 # meld: graphical text file compare utility
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
 # mtp-tools: media-transfer-protocol tools: needed for smartphones
 # myspell-en-gb: spell checker for English (UK): needed for Libre Office
 # nautilus-compare: nautilus integration with meld
+# nethogs: CLI network monitor showing per application net usage
 # pandoc: general markup converter
 # papirus-icon-theme:
 # pinta: MS Paint alternative: more simple for new users than gimp
@@ -348,7 +350,8 @@ echo
 # testdisk: photorec tool for recovery of deleted files
 # traceroute: terminal utility
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
-# ubiquity-frontend-gtk: add here so not needed to be downloaded by wasta-remastersys or if needs to be updated by app-adjustments.sh
+# ubiquity-frontend-gtk: add here so not needed to be downloaded by
+#   wasta-remastersys or if needs to be updated by app-adjustments.sh
 # ubiquity-slideshow-wasta:
 # ubuntu-software: not great but currently no better option
 # ubuntu-restricted-extras: mp3, flash, etc.
@@ -379,6 +382,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     bookletimposer \
     brasero \
     btrfs-tools \
+    catfish \
     cheese \
     cifs-utils \
     clamtk clamtk-nautilus \
@@ -399,9 +403,11 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     fonts-sil-andika \
         fonts-sil-andika-compact \
         fonts-sil-charis \
+        fonts-sil-charis-compact \
         fonts-sil-doulos \
+        fonts-sil-doulos-compact \
         fonts-sil-gentiumplus \
-        fonts-sil-gentiumpluscompact \
+        fonts-sil-gentiumplus-compact \
     gcolor3 \
     gddrescue \
     gdebi \
@@ -439,12 +445,12 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     libreoffice-sdbc-hsqldb \
     libreoffice-style-tango \
     libtext-pdf-perl \
-    mate-search-tool \
     meld \
     mkusb-nox \
     modem-manager-gui \
     mtp-tools \
     nautilus-compare \
+    nethogs \
     pandoc \
     papirus-icon-theme \
     pinta \
