@@ -78,6 +78,7 @@
 #       - removing asunder (sound-juicer already included)
 #       - adding gnome-calculator, gnome-logs, gnome-sytem-monitor, gucharmap
 #       since bionic defaults are as snaps
+#   2018-05-23 rik: adding mate-search-tool, redshift-gtk, papirus-icon-theme
 #
 # ==============================================================================
 
@@ -263,9 +264,8 @@ echo
 # adobe-flashplugin: flash
 # aisleriot: solitare game
 # apt-rdepends: reverse dependency lookup
-# art-of-reading: for bloom **** BIONIC NOT AVAILABLE (yet) ****
 # audacity: audio editing
-# bloom-desktop: sil bloom **** BIONIC NOT AVAILABLE (yet) ****
+# bloom-desktop art-of-reading3: sil bloom
 # bookletimposer: pdf booklet / imposition tool
 # brasero: CD/DVD burner
 # btrfs-tools: filesystem utilities
@@ -296,7 +296,6 @@ echo
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
 # gnome-logs
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
-# gnome-search-tool: more in-depth search than nemo gives **** BIONIC not found??? ****
 # gnome-system-monitor:
 # gparted: partition manager
 # grsync: GUI rsync tool
@@ -323,6 +322,7 @@ echo
 # libreoffice-sdbc-hsqldb: db backend for LO base
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
+# mate-search-tool: more in-depth search than nemo gives (formerly gnome-search-tool but dropped for bionic so using mate alternative)
 # meld: graphical text file compare utility
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
@@ -330,9 +330,11 @@ echo
 # myspell-en-gb: spell checker for English (UK): needed for Libre Office
 # nautilus-compare: nautilus integration with meld
 # pandoc: general markup converter
+# papirus-icon-theme:
 # pinta: MS Paint alternative: more simple for new users than gimp
 # python-appindicator: needed for zim app-indicator (maybe others?)
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
+# redshift-gtk: redshift for blue light reduction
 # rhythmbox: music manager
 # scribus: desktop publisher
 # shotwell: photo editor / manager (can edit single files easily)
@@ -356,7 +358,7 @@ echo
 # wasta-backup: GUI for rdiff-backup
 # wasta-ibus-bionic: wasta customization of ibus
 # wasta-menus: applicationmenu limiting system
-# wasta-offline: offline updates and installs
+# wasta-offline wasta-offline-setup: offline updates and installs
 # wasta-remastersys: create ISO of system
 # wasta-resources-core: wasta-core documentation and resources
 # wavemon: terminal utility for wireless network diagonstics
@@ -372,6 +374,8 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     apt-rdepends \
     apt-xapian-index \
     audacity \
+    bloom-desktop \
+        art-of-reading3 \
     bookletimposer \
     brasero \
     btrfs-tools \
@@ -435,15 +439,18 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     libreoffice-sdbc-hsqldb \
     libreoffice-style-tango \
     libtext-pdf-perl \
+    mate-search-tool \
     meld \
     mkusb-nox \
     modem-manager-gui \
     mtp-tools \
     nautilus-compare \
     pandoc \
+    papirus-icon-theme \
     pinta \
     python-appindicator \
     qt5-style-plugins \
+    redshift-gtk \
     rhythmbox \
     scribus scribus-doc scribus-template \
     shotwell \
@@ -465,7 +472,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     wasta-backup \
     wasta-ibus-bionic \
     wasta-menus \
-    wasta-offline \
+    wasta-offline wasta-offline-setup \
     wasta-remastersys \
     wasta-resources-core \
     wavemon \

@@ -1,3 +1,9 @@
+wasta-core-bionic (1.0.0) bionic; urgency=medium
+
+  * app-installs.sh: adding mate-search-tool, redshift-gtk, papirus-icon-theme
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 23 May 2018 08:34:10 +0300
+
 wasta-core-bionic (0.3.2) bionic; urgency=medium
 
   * app-installs.sh: adding gnome-calculator, gnome-logs,
