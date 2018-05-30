@@ -80,6 +80,7 @@
 #       since bionic defaults are as snaps
 #   2018-05-23 rik: adding catfish, redshift-gtk, papirus-icon-theme
 #       nethogs, sil compact fonts
+#   2018-05-30 jcl: adding libreoffice-gnome: ensure smb access works
 #
 # ==============================================================================
 
@@ -321,6 +322,7 @@ echo
 # libdvd-pkg: enables DVD playback (downloads and installs libdvdcss2)
 # libreoffice-base
 # libreoffice-gtk2:
+# libreoffice-ghome: (bionic only: removed with -gtk3, ensure it is added back)
 # libreoffice-sdbc-hsqldb: db backend for LO base
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
@@ -441,6 +443,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     lame \
     libdvd-pkg \
     libreoffice-gtk2 \
+    libreoffice-gnome \
     libreoffice-base \
     libreoffice-sdbc-hsqldb \
     libreoffice-style-tango \

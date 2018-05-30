@@ -1,3 +1,13 @@
+wasta-core-bionic (1.0.3) bionic; urgency=medium
+
+  * don't remove libreoffice-gtk3: libreoffice-gnome depends on it
+    and without -gnome, smb access doesn't work from LibreOffice.
+    Add libreoffice-gnome to app-installs.sh for bionic
+    so that beta testers will have it re-added when they re-run
+    the scripts manually.
+
+ -- Justin Luth <jluth@mail.com>  Wed, 30 May 2018 16:09:57 +0300
+
 wasta-core-bionic (1.0.2) bionic; urgency=medium
 
   * app-removals.sh: not removing metacity (or else cinnamon uninstalled)
