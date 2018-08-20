@@ -33,6 +33,7 @@
 #   2017-12-20 rik: removing branding items (plymouth, etc.) as they are now
 #       in wasta-multidesktop
 #   2018-02-28 rik: adjusting qt compatibilty tweaks
+#   2018-08-20 rik: disable release-upgrade prompts
 #
 # ==============================================================================
 
@@ -334,6 +335,21 @@ then
 else
     cat << EOF > /etc/default/apport
 enabled=0
+EOF
+fi
+
+# ------------------------------------------------------------------------------
+# disable release-upgrade prompts
+# ------------------------------------------------------------------------------
+if [ -e /etc/update-manager/release-upgrades ];
+then
+    echo
+    echo "*** Disabling release-upgrade prompts"
+    echo
+    sed -i -e 's@Prompt=.*@Prompt=never@' /etc/update-manager/release-upgrades
+else
+    cat << EOF > /etc/update-manager/release-upgrades
+Prompt=never
 EOF
 fi
 

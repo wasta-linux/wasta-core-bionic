@@ -1,3 +1,9 @@
+wasta-core-bionic (1.0.4) bionic; urgency=medium
+
+  * postinst: disable release-upgrade prompts
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 20 Aug 2018 12:30:36 +0300
+
 wasta-core-bionic (1.0.3) bionic; urgency=medium
 
   * don't remove libreoffice-gtk3: libreoffice-gnome depends on it
