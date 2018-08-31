@@ -34,6 +34,9 @@
 #       in wasta-multidesktop
 #   2018-02-28 rik: adjusting qt compatibilty tweaks
 #   2018-08-20 rik: disable release-upgrade prompts
+#   2018-08-31 rik: remove Wasta-Testing PPA if found (normal users AND devs
+#       should not have this hanging around: devs will need to re-add when
+#       wanting to do some testing from the PPA)
 #
 # ==============================================================================
 
@@ -86,7 +89,6 @@ else
         echo
         echo "*** wasta-offline 'offline and internet' mode detected"
         echo
-        # **** BIONIC need to make work fi 'offline and internet BUT no files in sources.list.d'
         # files inside /etc/apt/sources.list.d so it is active
         # wasta-offline "offline and internet mode": no change to sources.list.d
         APT_SOURCES_D=/etc/apt/sources.list.d
@@ -122,6 +124,14 @@ sed -i -e '/#wasta$/! s@.*\(deb .*canonical.com/ubuntu.* '$SERIES' \)@\1@' $APT_
 # legacy cleanup: PSO should NOT be in sources.list anymore (ubiquity will
 #   remove when installing)
 sed -i -e '\@http://packages.sil.org/ubuntu@d' $APT_SOURCES
+
+# Manually add repo keys:
+#   - apt-key no longer supported in scripts so need to use gpg directly.
+#       - Still works 18.04 but warning it may break in the future: however
+#         the direct gpg calls were problematic so keeping same for bionic.
+#   - sending output to null to not scare users
+apt-key add $DIR/keys/sil-2016.gpg > /dev/null 2>&1
+apt-key add $DIR/keys/wasta-linux-ppa.gpg > /dev/null 2>&1
 
 # add SIL repository
 if ! [ -e $APT_SOURCES_D/packages-sil-org-$SERIES.list ];
@@ -159,16 +169,6 @@ echo
 echo "*** Adding Repository GPG Keys"
 echo
 
-# Manually add repo keys:
-#   - apt-key no longer supported in scripts so need to use gpg directly.
-#   - sending output to null to not scare users
-apt-key add $DIR/keys/sil-2016.gpg > /dev/null 2>&1
-# apt-key add $DIR/keys/libreoffice-ppa.gpg
-apt-key add $DIR/keys/wasta-linux-ppa.gpg > /dev/null 2>&1
-#gpg --no-default-keyring --keyring /etc/apt/trusted.gpg.d/sil-2016.gpg --import $DIR/keys/sil-2016.gpg # > /dev/null 2>&1
-#gpg --no-default-keyring --keyring /etc/apt/trusted.gpg.d/sil-2016.gpg --import $DIR/keys/sil-2016.gpg # > /dev/null 2>&1
-#gpg --no-default-keyring --keyring /etc/apt/trusted.gpg.d/wasta-linux-ppa.gpg --import $DIR/keys/wasta-linux-ppa.gpg # > /dev/null 2>&1
-
 # add Wasta-Linux PPA
 if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-wasta-$SERIES.list ];
 then
@@ -205,22 +205,15 @@ else
         $APT_SOURCES_D/wasta-linux-ubuntu-wasta-apps-$SERIES.list
 fi
 
-# add LibreOffice 5.1 PPA
-# if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-5-1-$SERIES.list ];
-# then
-#     echo
-#     echo "*** Adding LibreOffice 5.1 PPA"
-#     echo
-#     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-5-1/ubuntu $SERIES main" | \
-#         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-5-1-$SERIES.list
-#     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-5-1/ubuntu $SERIES main" | \
-#         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-5-1-$SERIES.list
-# else
-#     # found, but ensure Wasta-Linux PPA ACTIVE (user could have accidentally disabled)
-#     # DO NOT match any lines ending in #wasta
-#     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-#        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-5-1-$SERIES.list
-# fi
+# IF Wasta-Testing PPA found, remove (do NOT want users having this, also
+#   developers should only temporarily have it)
+if [ -e $APT_SOURCES_D/wasta-linux-ubuntu-wasta-testing-$SERIES.list ];
+then
+    echo
+    echo "*** REMOVING Wasta-Linux Testing PPA"
+    echo
+    rm -f $APT_SOURCES_D/wasta-linux-ubuntu-wasta-testing-$SERIES*
+fi
 
 # apt-get adjustments
 # 2017-09-28 rik: updating to NOT replace files if they already exist.
@@ -280,7 +273,7 @@ echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula boolean 
 # machines created from ISO from Remastersys 3.0.4 stock will have some key files
 #   missing needed for ssh server to work correctly
 
-# 2017-11-29 rik: **** NEEDED FOR BIONIC? ****
+# 2017-11-29 rik: keeping for bionic (can't hurt) but maybe not needed anymore
 #
 # don't print out errors (so will be blank if ssh not installed)
 OPENSSH_INSTALLED=$(dpkg --status openssh-server 2>/dev/null \
@@ -301,10 +294,10 @@ fi
 # 2017-11-29 rik: **** NEEDED FOR BIONIC? ****
 # some logs need different ownership than "root:root"
 # remastersys doesn't do this right, check if fixed in wasta-remastersys?
-chown -f syslog:adm /var/log/syslog*
-chown -f syslog:adm /var/log/auth.log*
-chown -f syslog:adm /var/log/kern.log*
-chown -f syslog:adm /var/log/mail.log*
+#chown -f syslog:adm /var/log/syslog*
+#chown -f syslog:adm /var/log/auth.log*
+#chown -f syslog:adm /var/log/kern.log*
+#chown -f syslog:adm /var/log/mail.log*
 
 # ------------------------------------------------------------------------------
 # qt5 app theme adjustment
@@ -383,16 +376,6 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/ # > /dev/null 2>&1 || true;
 # /org/compiz/profiles/unity/plugins/expo/x-offset 48   NO SCHEMA
 
 # ------------------------------------------------------------------------------
-# Disable GNOME Overlay Scrollbars
-# ------------------------------------------------------------------------------
-# 2017-11-29 rik: **** NEEDED FOR BIONIC? **** or done differently?
-# prior to 15.10, done by removing overlay-scrollbar*, but now Ubuntu uses
-#   Gnome's overlay scrollbars, which can't be removed but can be disabled
-#sed -i -e '$a GTK_OVERLAY_SCROLLING=0' \
-#    -i -e '\#GTK_OVERLAY_SCROLLING#d' \
-#    /etc/environment
-
-# ------------------------------------------------------------------------------
 # Reduce "Swappiness"
 # ------------------------------------------------------------------------------
 # https://sites.google.com/site/easylinuxtipsproject/first
@@ -400,17 +383,6 @@ glib-compile-schemas /usr/share/glib-2.0/schemas/ # > /dev/null 2>&1 || true;
 sed -i -e '$a vm.swappiness=10' \
     -i -e '\#vm.swappiness#d' \
     /etc/sysctl.conf
-
-# ------------------------------------------------------------------------------
-# Allow Shockwave Flash videos to play in browser
-# ------------------------------------------------------------------------------
-# 2017-11-29 rik: **** NEEDED FOR BIONIC? ****
-# Fix from here: http://askubuntu.com/questions/7240/how-do-i-play-swf-files
-
-#sed -i -e "s@vnd.adobe.flash.movie@x-shockwave-flash@" \
-#    /usr/share/mime/packages/freedesktop.org.xml
-
-#update-mime-database /usr/share/mime
 
 # ------------------------------------------------------------------------------
 # Finished

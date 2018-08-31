@@ -81,6 +81,8 @@
 #   2018-05-23 rik: adding catfish, redshift-gtk, papirus-icon-theme
 #       nethogs, sil compact fonts
 #   2018-05-30 jcl: adding libreoffice-gnome: ensure smb access works
+#   2018-08-31 rik: adding LO 6.0 PPA
+#       - adding wasta-remastersys conf update (formerly in wasta-multidesktop)
 #
 # ==============================================================================
 
@@ -197,25 +199,29 @@ then
     cp $APT_SOURCES $APT_SOURCES.save
 fi
 
-# FYI: LO repository signature keys added in the postinst!
+# Manually add repo keys:
+#   - apt-key no longer supported in scripts so need to use gpg directly.
+#       - Still works 18.04 but warning it may break in the future: however
+#         the direct gpg calls were problematic so keeping same for bionic.
+#   - sending output to null to not scare users
+apt-key add $DIR/keys/libreoffice-ppa.gpg > /dev/null 2>&1
 
-# Add libreoffice 4.4 ppa
-#if ! [ -e $APT_SOURCES_D/libreoffice-libreoffice-4-4-trusty.list ];
-#then
-#    echo
-#    echo "*** Adding LibreOffice 4.4 PPA"
-#    echo
-#    echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-4-4/ubuntu trusty main" | \
-#        tee -a $APT_SOURCES_D/libreoffice-libreoffice-4-4-trusty.list
-#    echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-4-4/ubuntu trusty main" | \
-#        tee -a $APT_SOURCES_D/libreoffice-libreoffice-4-4-trusty.list
-
-#    echo
-#    echo "*** Removing LibreOffice 4.2 and 4.3 PPAs"
-#    echo
-#    rm -f $APT_SOURCES_D/libreoffice-libreoffice-4-3*
-#    rm -f $APT_SOURCES_D/libreoffice-libreoffice-4-2*
-#fi
+# add LibreOffice 6.0 PPA
+ if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list ];
+ then
+     echo
+     echo "*** Adding LibreOffice 6.0 PPA"
+     echo
+     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-0/ubuntu $SERIES main" | \
+         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list
+     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-0/ubuntu $SERIES main" | \
+         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list
+ else
+     # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
+     # DO NOT match any lines ending in #wasta
+     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
+        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list
+ fi
 
 # Add Skype repository
 if ! [ -e $APT_SOURCES_D/skype-stable.list ];
@@ -228,7 +234,7 @@ then
         tee $APT_SOURCES_D/skype-stable.list
     
     # manually add Skype repo key (since wasta-offline could be active)
-    apt-key add $DIR/keys/skype.gpg
+    apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 fi
 
 apt-get update
@@ -333,6 +339,7 @@ echo
 # myspell-en-gb: spell checker for English (UK): needed for Libre Office
 # nautilus-compare: nautilus integration with meld
 # nethogs: CLI network monitor showing per application net usage
+# net-tools: terminal - basic utilities like ifconfig
 # pandoc: general markup converter
 # papirus-icon-theme:
 # pinta: MS Paint alternative: more simple for new users than gimp
@@ -454,6 +461,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     mtp-tools \
     nautilus-compare \
     nethogs \
+    net-tools \
     pandoc \
     papirus-icon-theme \
     pinta \
@@ -531,6 +539,35 @@ apt-get $YES install $INSTALL_APPS
 #         aptError
 #     fi
 # fi
+
+# ------------------------------------------------------------------------------
+# wasta-remastersys conf updates
+# ------------------------------------------------------------------------------
+WASTA_REMASTERSYS_CONF=/etc/wasta-remastersys/wasta-remastersys.conf
+if [ -e "$WASTA_REMASTERSYS_CONF" ];
+then
+    # change to wasta-linux splash screen
+    sed -i -e 's@SPLASHPNG=.*@SPLASHPNG="/usr/share/wasta-core/resources/wasta-linux-vga.png"@' \
+        "$WASTA_REMASTERSYS_CONF"
+    
+    # set default CD Label and ISO name
+    WASTA_ID="$(sed -n "\@^ID=@s@^ID=@@p" /etc/wasta-release)"
+    WASTA_VERSION="$(sed -n "\@^VERSION=@s@^VERSION=@@p" /etc/wasta-release)"
+    ARCH=$(uname -m)
+    if [ $ARCH == 'x86_64' ];
+    then
+        WASTA_ARCH="64bit"
+    else
+        WASTA_ARCH="32bit"
+    fi
+    WASTA_DATE=$(date +%F)
+
+    #shortening CUSTOMISO since if it is too long wasta-remastersys will fail
+    sed -i -e "s@LIVECDLABEL=.*@LIVECDLABEL=\"$WASTA_ID $WASTA_VERSION $WASTA_ARCH\"@" \
+           -e "s@CUSTOMISO=.*@CUSTOMISO=\"WL-$WASTA_VERSION-$WASTA_ARCH.iso\"@" \
+           -e "s@SLIDESHOW=.*@SLIDESHOW=wasta@" \
+        "$WASTA_REMASTERSYS_CONF"
+fi
 
 # ------------------------------------------------------------------------------
 # Reconfigure libdvd-pkg to get libdvdcss2 installed

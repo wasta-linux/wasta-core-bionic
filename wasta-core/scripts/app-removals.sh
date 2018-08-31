@@ -39,6 +39,8 @@
 #       lists them as 'recommends')
 #   2018-05-23 rik: not removing metacity: this will cause cinnamon to be removed
 #   2018-05-30 jcl: don't remove libreoffice-gtk3 - a dependency for -gnome
+#   2018-08-25 rik: removing additional fonts to reduce font lists.  Users
+#       needing them will need to add them back in their wasta-custom-* packages
 #
 # ==============================================================================
 
@@ -98,7 +100,7 @@ echo
 # glipper: we now use diodon
 # gnome-flashback: not sure how this got installed, but don't want as default
 # gnome-orca: screen reader
-# gnome-sushi unoconv:confusing for some
+# gnome-sushi:confusing for some
 # keepassx: keepassxc now preferred
 # landscape-client-ui-install: pay service only for big corporations
 # mpv: media player - not sure how this got installed
@@ -120,12 +122,45 @@ pkgToRemoveListFull="\
     blueman \
     deja-dup \
     empathy-common \
-    fonts-noto-cjk \
-    fonts-*tlwg* \
+    fonts-beng* \
+        fonts-deva* \
+        fonts-gargi \
+        fonts-gubbi \
+        fonts-gujr* \
+        fonts-guru* \
+        fonts-indic \
+        fonts-kacst* \
+        fonts-kalapi \
+        fonts-knda \
         fonts-khmeros-core \
         fonts-lao \
+        fonts-lklug-sinhala \
+        fonts-lohit* \
+        fonts-mlym \
+        fonts-nakula \
+        fonts-navilu \
         fonts-nanum \
+        fonts-noto-* \
+        fonts-orya* \
+        fonts-pagul \
+        fonts-sahadeva \
+        fonts-samyak* \
+        fonts-sarai \
+        fonts-sil-padauk \
+        fonts-smc* \
         fonts-takao-pgothic \
+        fonts-taml \
+        fonts-telu* \
+        fonts-tibetan-machine \
+        fonts-*tlwg* \
+        ttf-indic-fonts-core \
+        ttf-kacst-one \
+        ttf-khmeros-core \
+        ttf-punjabi-fonts \
+        ttf-takao-pgothic \
+        ttf-thai-tlwg \
+        ttf-unfonts-core \
+        ttf-wqy-microhei \
     gcolor2 \
     gdm \
     glipper \
@@ -140,14 +175,6 @@ pkgToRemoveListFull="\
         totem-common \
         totem-plugins \
     transmission-common \
-    ttf-indic-fonts-core \
-        ttf-kacst-one \
-        ttf-khmeros-core \
-        ttf-punjabi-fonts \
-        ttf-takao-pgothic \
-        ttf-thai-tlwg \
-        ttf-unfonts-core \
-        ttf-wqy-microhei \
     unity-webapps-common \
     webbrowser-app \
     whoopsie"
