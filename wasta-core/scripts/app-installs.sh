@@ -83,6 +83,8 @@
 #   2018-05-30 jcl: adding libreoffice-gnome: ensure smb access works
 #   2018-08-31 rik: adding LO 6.0 PPA
 #       - adding wasta-remastersys conf update (formerly in wasta-multidesktop)
+#   2018-08-31 rik: syncing with Google Sheet documentation, adding a few
+#       extras such as silcc, teckit, easytag
 #
 # ==============================================================================
 
@@ -271,8 +273,9 @@ echo
 
 # adobe-flashplugin: flash
 # aisleriot: solitare game
+# android-tools-adb: terminal utility to communicate to Android devices
 # apt-rdepends: reverse dependency lookup
-# audacity: audio editing
+# audacity lame: audio editing
 # bloom-desktop art-of-reading3: sil bloom
 # bookletimposer: pdf booklet / imposition tool
 # brasero: CD/DVD burner
@@ -287,6 +290,7 @@ echo
 # diodon: clipboard manager
 # dkms: "Dynamic Kernel Module Support" (needed by virtualbox, broadcom, etc.)
 # dos2unix: convert line endings of text files to / from windows to unix
+# easytag: GUI ID3 tag editor
 # exfat-fuse, exfat-utils: compatibility for exfat formatted disks
 # extundelete: terminal utility to restore deleted files
 # fbreader: e-book reader
@@ -303,7 +307,8 @@ echo
 # gnome-calculator
 # gnome-clocks: multi-timezone clocks, timers, alarms
 # gnome-font-viewer: better than "font-manager" for just viewing a font file.
-# gnome-logs
+# gnome-logs: GUI log viewer
+# gnome-maps: GUI map viewer
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
 # gnome-system-monitor:
 # gparted: partition manager
@@ -324,15 +329,14 @@ echo
 # keepassxc: password manager (xc is the community port that is more up to date)
 # klavaro: typing tutor
 # kmfl-keyboard-ipa: ipa keyboard for kmfl
-# lame: MP3 encoder
 # libdvd-pkg: enables DVD playback (downloads and installs libdvdcss2)
-# libreoffice-base
+# libreoffice-base:
+# libreoffice-gnome: (bionic only: removed with -gtk3, ensure it is added back)
 # libreoffice-gtk2:
-# libreoffice-ghome: (bionic only: removed with -gtk3, ensure it is added back)
 # libreoffice-sdbc-hsqldb: db backend for LO base
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
-# meld: graphical text file compare utility
+# meld nautilus-compare: graphical text file compare utility
 # mkusb-nox: teminal usb creator (15.10 issue with usb-creator-gtk)
 # modem-manager-gui: Check balance, top up, check signal strength, etc.
 # mtp-tools: media-transfer-protocol tools: needed for smartphones
@@ -343,12 +347,12 @@ echo
 # pandoc: general markup converter
 # papirus-icon-theme:
 # pinta: MS Paint alternative: more simple for new users than gimp
-# python-appindicator: needed for zim app-indicator (maybe others?)
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
 # redshift-gtk: redshift for blue light reduction
 # rhythmbox: music manager
 # scribus: desktop publisher
 # shotwell: photo editor / manager (can edit single files easily)
+# silcc: Terminal - SIL consistent changes
 # simplescreenrecorder: screen recorder 
 # skypeforlinux: skype
 # soundconverter: convert audio formats
@@ -356,7 +360,9 @@ echo
 # ssh: remote access
 # synaptic: more advanced package manager
 #   - apt-xapian-index: for synpatic indexing
+# teckit: Terminal: SIL teckit
 # testdisk: photorec tool for recovery of deleted files
+# thunderbird xul-ext-lightning: GUI email client
 # traceroute: terminal utility
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
 # ubiquity-frontend-gtk: add here so not needed to be downloaded by
@@ -365,6 +371,7 @@ echo
 # ubuntu-software: not great but currently no better option
 # ubuntu-restricted-extras: mp3, flash, etc.
 # ubuntu-wallpapers-*: wallpaper collections
+# uget uget-integrator: GUI download manager (DTA in Firefox abandoned)
 # vim-tiny: terminal text editor (don't want FULL vim or else in main menu)
 # vlc: play any audio or video files
 # wasta-backup: GUI for rdiff-backup
@@ -383,9 +390,10 @@ echo
 $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     adobe-flashplugin \
     aisleriot \
+    android-tools-adb \
     apt-rdepends \
     apt-xapian-index \
-    audacity \
+    audacity lame \
     bloom-desktop \
         art-of-reading3 \
     bookletimposer \
@@ -402,6 +410,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     diodon \
     dkms \
     dos2unix \
+    easytag \
     exfat-fuse \
         exfat-utils \
     extundelete \
@@ -428,7 +437,9 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     gnome-clocks \
     gnome-font-viewer \
     gnome-logs \
+    gnome-maps \
     gnome-nettool \
+    gnome-screenshot \
     gnome-system-monitor \
     gparted \
     grsync \
@@ -447,19 +458,18 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     keepassxc \
     klavaro \
     kmfl-keyboard-ipa \
-    lame \
     libdvd-pkg \
-    libreoffice-gtk2 \
-    libreoffice-gnome \
     libreoffice-base \
-    libreoffice-sdbc-hsqldb \
-    libreoffice-style-tango \
+        libreoffice-gnome \
+        libreoffice-gtk2 \
+        libreoffice-sdbc-hsqldb \
+        libreoffice-style-tango \
     libtext-pdf-perl \
     meld \
+        nautilus-compare \
     mkusb-nox \
     modem-manager-gui \
     mtp-tools \
-    nautilus-compare \
     nethogs \
     net-tools \
     pandoc \
@@ -471,19 +481,23 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     rhythmbox \
     scribus scribus-doc scribus-template \
     shotwell \
+    silcc \
     simplescreenrecorder \
     skypeforlinux \
     soundconverter \
     sound-juicer \
     ssh \
     synaptic apt-xapian-index \
+    teckit \
     testdisk \
+    thunderbird xul-ext-lightning \
     traceroute \
     ttf-mscorefonts-installer \
     ubiquity-frontend-gtk \
     ubiquity-slideshow-wasta \
     ubuntu-software \
     ubuntu-restricted-extras \
+    uget uget-integrator \
     vim-tiny \
     vlc \
     wasta-backup \
@@ -495,9 +509,8 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     wavemon \
     xmlstarlet \
     xsltproc \
-    xul-ext-lightning \
     youtube-dl \
-    zim \
+    zim python-appindicator \
     "
 
     LASTERRORLEVEL=$?

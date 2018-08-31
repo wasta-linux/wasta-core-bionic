@@ -1,3 +1,10 @@
+wasta-core-bionic (1.0.6) bionic; urgency=medium
+
+  * app-installs: syncing with Google Sheet, adding a few extras
+    such as silcc, teckit, easytag
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 31 Aug 2018 14:16:49 +0300
+
 wasta-core-bionic (1.0.5) bionic; urgency=medium
 
   * app-installs: add LO 6.0 PPA
