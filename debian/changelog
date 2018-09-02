@@ -1,3 +1,10 @@
+wasta-core-bionic (1.0.7) bionic; urgency=medium
+
+  * app-installs: remove scribus (need to save space on ISO)
+  * minor cleanup
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sun, 02 Sep 2018 18:28:43 +0300
+
 wasta-core-bionic (1.0.6) bionic; urgency=medium
 
   * app-installs: syncing with Google Sheet, adding a few extras

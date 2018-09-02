@@ -132,8 +132,9 @@ aptError () {
 echo
 echo "*** Script Entry: app-installs.sh"
 echo
-# Setup Diretory for later reference
+# Setup variables for later reference
 DIR=/usr/share/wasta-core
+SERIES=$(lsb_release -sc)
 
 # if 'auto' parameter passed, run non-interactively
 if [ "$1" == "auto" ];

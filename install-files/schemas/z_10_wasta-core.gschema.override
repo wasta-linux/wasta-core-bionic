@@ -29,8 +29,8 @@
 #clock-show-date = true
 #cursor-theme = 'DMZ-White'
 #font-name = 'Ubuntu 11'
-# gtk-theme = 'Ambiance'
-# icon-theme = 'ubuntu-mono-dark'
+#gtk-theme = 'Ambiance'
+#icon-theme = 'ubuntu-mono-dark'
 #monospace-font-name = 'Ubuntu Mono 12'
 
 #[org.gnome.desktop.lockdown]
