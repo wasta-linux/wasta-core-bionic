@@ -351,7 +351,6 @@ echo
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
 # redshift-gtk: redshift for blue light reduction
 # rhythmbox: music manager
-# scribus: desktop publisher
 # shotwell: photo editor / manager (can edit single files easily)
 # silcc: Terminal - SIL consistent changes
 # simplescreenrecorder: screen recorder 
@@ -480,7 +479,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     qt5-style-plugins \
     redshift-gtk \
     rhythmbox \
-    scribus scribus-doc scribus-template \
     shotwell \
     silcc \
     simplescreenrecorder \

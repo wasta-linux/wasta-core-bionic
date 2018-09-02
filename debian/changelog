@@ -1,3 +1,9 @@
+wasta-core-bionic (1.0.8) bionic; urgency=medium
+
+  * app-installs: really remove scribus this time :-)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sun, 02 Sep 2018 18:58:26 +0300
+
 wasta-core-bionic (1.0.7) bionic; urgency=medium
 
   * app-installs: remove scribus (need to save space on ISO)
