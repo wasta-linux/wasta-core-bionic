@@ -86,6 +86,7 @@
 #   2018-08-31 rik: syncing with Google Sheet documentation, adding a few
 #       extras such as silcc, teckit, easytag
 #   2018-09-05 rik: adding fonts-sil-annapurna
+#       - adding wasta-papirus papirus-icon-theme
 #
 # ==============================================================================
 
@@ -379,6 +380,7 @@ echo
 # wasta-ibus-bionic: wasta customization of ibus
 # wasta-menus: applicationmenu limiting system
 # wasta-offline wasta-offline-setup: offline updates and installs
+# wasta-papirus papirus-icon-theme: more 'modern' icon theme
 # wasta-remastersys: create ISO of system
 # wasta-resources-core: wasta-core documentation and resources
 # wavemon: terminal utility for wireless network diagonstics
@@ -505,6 +507,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     wasta-ibus-bionic \
     wasta-menus \
     wasta-offline wasta-offline-setup \
+    wasta-papirus papirus-icon-theme \
     wasta-remastersys \
     wasta-resources-core \
     wavemon \
