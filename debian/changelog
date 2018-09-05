@@ -1,3 +1,9 @@
+wasta-core-bionic (1.1.0) bionic; urgency=medium
+
+  * app-installs: adding fonts-sil-annapurna
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 05 Sep 2018 11:55:50 +0300
+
 wasta-core-bionic (1.0.8) bionic; urgency=medium
 
   * app-installs: really remove scribus this time :-)

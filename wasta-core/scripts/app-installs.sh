@@ -85,6 +85,7 @@
 #       - adding wasta-remastersys conf update (formerly in wasta-multidesktop)
 #   2018-08-31 rik: syncing with Google Sheet documentation, adding a few
 #       extras such as silcc, teckit, easytag
+#   2018-09-05 rik: adding fonts-sil-annapurna
 #
 # ==============================================================================
 
@@ -420,6 +421,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     fonts-crosextra-carlito \
     fonts-sil-andika \
         fonts-sil-andika-compact \
+        fonts-sil-annapurna \
         fonts-sil-charis \
         fonts-sil-charis-compact \
         fonts-sil-doulos \
