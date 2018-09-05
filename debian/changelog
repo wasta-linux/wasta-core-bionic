@@ -1,3 +1,9 @@
+wasta-core-bionic (1.1.2) bionic; urgency=medium
+
+  * wasta-release: re-add version parameter
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Wed, 05 Sep 2018 15:29:31 +0300
+
 wasta-core-bionic (1.1.1) bionic; urgency=medium
 
   * app-installs: adding wasta-papirus papirus-icon-theme
