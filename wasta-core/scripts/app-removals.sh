@@ -41,6 +41,8 @@
 #   2018-05-30 jcl: don't remove libreoffice-gtk3 - a dependency for -gnome
 #   2018-08-25 rik: removing additional fonts to reduce font lists.  Users
 #       needing them will need to add them back in their wasta-custom-* packages
+#   2018-09-05 rik: removing snapd (over 800MB in /var/lib/snapd no way to
+#       disable auto-updates).
 #
 # ==============================================================================
 
@@ -80,6 +82,11 @@ else
 fi
 
 # ------------------------------------------------------------------------------
+# Ensure lightdm installed (so can remove gdm3 below)
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
 # Base Packages to remove for all systems
 # ------------------------------------------------------------------------------
 
@@ -96,7 +103,6 @@ echo
 #       handles it, but it is too different to use
 # fonts-*: non-english fonts
 # gcolor2: color picker (but we upgraded to gcolor3)
-# gdm: gnome display manager (we use lightdm)
 # glipper: we now use diodon
 # gnome-flashback: not sure how this got installed, but don't want as default
 # gnome-orca: screen reader
@@ -105,6 +111,7 @@ echo
 # landscape-client-ui-install: pay service only for big corporations
 # mpv: media player - not sure how this got installed
 # nemo-preview: confusing for some
+# snapd: see below
 # totem: not needed as vlc handles all video/audio
 # transmission: normal users doing torrents probably isn't preferred
 # ttf-* fonts: non-english font families
@@ -162,7 +169,6 @@ pkgToRemoveListFull="\
         ttf-unfonts-core \
         ttf-wqy-microhei \
     gcolor2 \
-    gdm \
     glipper \
     gnome-flashback \
     gnome-orca \
@@ -171,6 +177,7 @@ pkgToRemoveListFull="\
     landscape-client-ui-install \
     mpv \
     nemo-preview \
+    snapd \
     totem \
         totem-common \
         totem-plugins \
@@ -189,13 +196,41 @@ done
 
 apt-get $YES purge $pkgToRemoveList
 
+# ------------------------------------------------------------------------------
+# cleanup dangling folders
+# ------------------------------------------------------------------------------
+# some removals do not clean up after themselves
+if [ ! -x /usr/bin/blueman-manager ];
+then
+    rm -rf /var/lib/blueman
+fi
+
+if [ ! -x /usr/bin/whoopsie ];
+then
+    rm -rf /var/lib/whoopsie
+fi
+
+# ------------------------------------------------------------------------------
+# snap cleanup
+# ------------------------------------------------------------------------------
+
+#2018-09-05 rik: removing snapd from Wasta-Linux 18.04: installed
+#   it takes up huge space (/var/lib/snapd is approx. 800MB) and 
+#   there is no way to disable auto-updates which our users are not
+#   going to be happy with
+#
 # rik: these snaps don't integrate well with the theme and are slow to start
 #   so for 18.04 we will REMOVE them and install their traditional counterparts
-snap remove \
-    gnome-calculator \
-    gnome-characters \
-    gnome-logs \
-    gnome-system-monitor
+#snap remove \
+#    gnome-calculator \
+#    gnome-characters \
+#    gnome-logs \
+#    gnome-system-monitor \
+#    gnome-3-26-1604 \
+#    gtk-common-themes
+
+#rm /var/lib/snapd/snaps/*.snap
+#rm /var/lib/snapd/seed/snaps/*.snap
 
 # ------------------------------------------------------------------------------
 # run autoremove to cleanout unneeded dependent packages

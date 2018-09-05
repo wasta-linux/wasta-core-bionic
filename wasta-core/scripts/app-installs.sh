@@ -87,6 +87,7 @@
 #       extras such as silcc, teckit, easytag
 #   2018-09-05 rik: adding fonts-sil-annapurna
 #       - adding wasta-papirus papirus-icon-theme
+#   2018-09-05 rik: removing clamtk.. too big (255+MB) and not useful enough
 #
 # ==============================================================================
 
@@ -286,7 +287,6 @@ echo
 # catfish: more in-depth search than nemo gives (gnome-search-tool not available)
 # cheese: webcam recorder, picture taker
 # cifs-utils: "common internet filesystem utils" for fileshare utilities, etc.
-# clamtk, clamtk-nautilus: GUI for clamav antivirus tool
 # curl: terminal for download
 # dconf-cli, dconf-tools: gives tools for making settings adjustments
 # debconf-utils: needed for debconf-get-selections, etc. for debconf configure
@@ -405,7 +405,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     catfish \
     cheese \
     cifs-utils \
-    clamtk clamtk-nautilus \
     curl \
     dconf-cli \
         dconf-tools \
