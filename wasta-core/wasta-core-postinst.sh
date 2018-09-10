@@ -225,17 +225,6 @@ then
     echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/99translations
 fi
 
-# have apt-get not use cache: Internet caching by ISPs cache broken packages
-#   causing apt-get to get hash sum mismatches, badsigs, etc.
-#
-# 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
-#   set to True.  So disabling for bionic for now until get more input from
-#   other users (but Ethiopia for example will want this set to False)
-#if ! [ -e /etc/apt/apt.conf.d/99nocache ];
-#then
-#    echo 'Acquire::http::No-Cache "True";' > /etc/apt/apt.conf.d/99nocache
-#fi
-
 # have apt-get not use proxy: Internet caching by ISPs cache broken packages
 #   causing apt-get to get hash sum mismatches, badsigs, etc.
 if ! [ -e /etc/apt/apt.conf.d/99brokenproxy ];

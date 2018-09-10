@@ -7,29 +7,29 @@
 #   2013-01-03 rik: several adjustments, added superuser block.
 #   2013-04-02 rik: Added "Make PDF Booklet" right click option
 #   2013-06-12 rik: Added chmod 644 for copied resources.  Added a bit of 
-#       testing logic to better support re-running.
+#     testing logic to better support re-running.
 #   2013-06-20 rik: Adding several adjustments:
-#       -updating for Cinnamon 1.8.x compatibilty
-#       -adding sil repository and basic sil fonts
-#       -adding libreoffice 4.0 ppa
-#       -replacing 'echo | tee ...' with one-liner sed append / delete
+#     - updating for Cinnamon 1.8.x compatibilty
+#     - adding sil repository and basic sil fonts
+#     - adding libreoffice 4.0 ppa
+#     - replacing 'echo | tee ...' with one-liner sed append / delete
 #   2013-08-14 jcl: Nemo Actions for A4 PDF booklet printing, image resizing.
 #   2013-10-16 rik: Refactored into wasta-base-apps-upgrade.  Other sections moved
-#       to wasta-base-setup preinst and postinst.
+#     to wasta-base-setup preinst and postinst.
 #   2013-11-26 jcl: superuser block: remove -l in su -l (wrong working directory
-#       context) and added $* to pass command line parameters along.
+#     context) and added $* to pass command line parameters along.
 #   2013-12-19 rik: locale cleanup, ia32-libs confirm for 64bit skype install
-#       (this enables gtk theme to be used for 32bit apps, etc.)
+#     (this enables gtk theme to be used for 32bit apps, etc.)
 #   2014-01-29 rik: added xmlstarlet
 #   2014-02-03 rik: added extundelete
 #   2014-06-02 rik: adding artha, glipper
-#       - cleanup / updates for Mint 17
-#       - adblock global firefox extension
+#     - cleanup / updates for Mint 17
+#     - adblock global firefox extension
 #   2014-06-14 rik: removing skype autostart (now placed by wasta-base-setup
 #       install).
 #   2014-07-22 rik: adding btrfs-tools, imagemagick
 #   2014-07-23 rik: adding linux-generic (to keep kernel up-to-date: mint
-#       holds it back by using their "linux-kernel-generic" instead).
+#     holds it back by using their "linux-kernel-generic" instead).
 #   2014-07-25 rik: cleaning out prior adblock folder if found.
 #   2014-12-17 rik: adding several apps for wl 14.04
 #   2015-01-09 rik: adding LO 4.3 PPA here (won't force on users in postinst)
@@ -38,56 +38,60 @@
 #   2015-07-27 rik: adding mdm: lightdm issues with cinnamon usb automount
 #   2015-08-05 rik: adding error processing in case an apt command failed
 #   2015-08-13 rik: holding casper, ubiquity-casper: new version 1.340.2 will
-#       cause remastersys to go to a login screen when booting the Live Session
+#     cause remastersys to go to a login screen when booting the Live Session
 #   2015-08-15 rik: removing casper, ubiquity-casper hold (solved casper
-#       issues.
+#     issues.
 #   2015-10-25 rik: refactoring for Ubuntu 15.10
 #   2015-11-04 rik: adding mkusb-nox (usb-creator-gtk issue with 15.10)
 #   2015-11-05 rik: adding tracker (gnome-shell file search / index tool)
-#       - adding hddtemp
-#       - adding gnome-sushi, unoconv (needed for sushi to show lo docs)
+#     - adding hddtemp
+#     - adding gnome-sushi, unoconv (needed for sushi to show lo docs)
 #   2015-11-10 rik: adding ubiquity (since needs tweaked in app-adjustments.sh)
 #   2016-03-01 rik: minor updates for 16.04: removing clamtk-nautilus,
-#       nautilus-converter, tracker*
+#     nautilus-converter, tracker*
 #   2016-03-02 rik: adding glipper (gpaste seemed to hang Cinnamon 2.8?)
 #   2016-04-27 rik: adding: goldendict, pandoc, vim
-#       - removing: artha
+#     - removing: artha
 #   2016-05-02 rik:
-#       removing:
+#     - removing:
 #           - linux-firmware-nonfre: not available for xenial
-#       adding:
+#     - adding:
 #           - audacity
 #           - gimp
 #           - zim, python-appindicator
 #   2016-05-04 rik: adding:
-#       - fbreader
-#       - inkscape
-#       - scribus
+#     - fbreader
+#     - inkscape
+#     - scribus
 #   2016-07-28 rik: mtpfs, mtp-tools, sound-juicer, brasero additions
 #   2016-08-22 rik: inotify-tools, wasta-ibus-xkb
 #   2016-09-30 rik: adding "booketimposer" to replace pdfbklt
-#       - removing gnome-sushi/unoconv since seems confusing for some
+#     - removing gnome-sushi/unoconv since seems confusing for some
 #   2016-10-05 rik: changing 'ubiquity' to install 'no-recommends' or else will
-#       pull in all the kde dependencies.
+#     pull in all the kde dependencies.
 #   2017-03-14 rik: adding bloom-desktop, art-of-reading, hfsprogs, gddrescue
 #   2017-11-29 rik: initial bionic version: adding kdenlive, removing openshot,
-#       adding gnome-software
+#     adding gnome-software
 #   2018-03-05 rik: adding dkms
 #   2018-03-14 rik: various bionic updates
 #   2018-04-03 rik: gnome-search-tool seems to have been removed from bionic?
-#       - removing asunder (sound-juicer already included)
-#       - adding gnome-calculator, gnome-logs, gnome-sytem-monitor, gucharmap
-#       since bionic defaults are as snaps
+#     - removing asunder (sound-juicer already included)
+#     - adding gnome-calculator, gnome-logs, gnome-sytem-monitor, gucharmap
+#     since bionic defaults are as snaps
 #   2018-05-23 rik: adding catfish, redshift-gtk, papirus-icon-theme
 #       nethogs, sil compact fonts
 #   2018-05-30 jcl: adding libreoffice-gnome: ensure smb access works
 #   2018-08-31 rik: adding LO 6.0 PPA
-#       - adding wasta-remastersys conf update (formerly in wasta-multidesktop)
+#     - adding wasta-remastersys conf update (formerly in wasta-multidesktop)
 #   2018-08-31 rik: syncing with Google Sheet documentation, adding a few
-#       extras such as silcc, teckit, easytag
+#     extras such as silcc, teckit, easytag
 #   2018-09-05 rik: adding fonts-sil-annapurna
 #       - adding wasta-papirus papirus-icon-theme
 #   2018-09-05 rik: removing clamtk.. too big (255+MB) and not useful enough
+#   2018-09-10 rik: making apt 10periodic and 20auto-upgrades changes:
+#     - Update-Package-Lists = 7
+#     - Download-Upgradeable-Packages = 0
+#     - Unattended-Upgrade = 0
 #
 # ==============================================================================
 
@@ -242,6 +246,43 @@ then
     # manually add Skype repo key (since wasta-offline could be active)
     apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 fi
+
+FILE="/etc/apt/apt.conf.d/10periodic"
+if [ -e "$FILE" ];
+then
+    # Set Apt Update-Package-Lists = 7
+    sed -i -e 's@\(Update-Package-Lists\).*@\1 "7";@' $FILE
+
+    # Set Apt Download-Upgradeable-Packages = 0
+    sed -i -e 's@\(Download-Upgradeable-Packages\).*@\1 "0";@' $FILE
+
+    # Set Apt Unattended-Upgrade = 0 (setting may not exist)
+    sed -i -e '$a APT::Periodic::Unattended-Upgrade "0";' \
+        -i -e '\@Unattended-Upgrade@d' $FILE
+fi
+
+FILE="/etc/apt/apt.conf.d/20auto-upgrades"
+if [ -e "$FILE" ];
+then
+    # Set Apt Update-Package-Lists = 7
+    sed -i -e 's@\(Update-Package-Lists\).*@\1 "7";@' $FILE
+
+    # Set Apt Download-Upgradeable-Packages = 0
+    sed -i -e 's@\(Download-Upgradeable-Packages\).*@\1 "0";@' $FILE
+
+    # Set Apt Unattended-Upgrade = 0 (setting may not exist)
+    sed -i -e '$a APT::Periodic::Unattended-Upgrade "0";' \
+        -i -e '\@Unattended-Upgrade@d' $FILE
+fi
+
+# 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
+#   set to True.  So disabling for bionic for now until get more input from
+#   other users (but Ethiopia for example will want this set to False)
+#if ! [ -e /etc/apt/apt.conf.d/99nocache ];
+#then
+#    echo 'Acquire::http::No-Cache "True";' > /etc/apt/apt.conf.d/99nocache
+#fi
+
 
 apt-get update
 
