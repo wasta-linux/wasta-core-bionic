@@ -92,6 +92,7 @@
 #     - Update-Package-Lists = 7
 #     - Download-Upgradeable-Packages = 0
 #     - Unattended-Upgrade = 0
+#   2019-02-23 rik: adding LO 6.1 PPA, removing LO 6.0 PPA
 #
 # ==============================================================================
 
@@ -216,22 +217,27 @@ fi
 #   - sending output to null to not scare users
 apt-key add $DIR/keys/libreoffice-ppa.gpg > /dev/null 2>&1
 
-# add LibreOffice 6.0 PPA
- if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list ];
+# add LibreOffice 6.1 PPA
+ if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list ];
  then
      echo
-     echo "*** Adding LibreOffice 6.0 PPA"
+     echo "*** Adding LibreOffice 6.1 PPA"
      echo
-     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-0/ubuntu $SERIES main" | \
-         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list
-     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-0/ubuntu $SERIES main" | \
-         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list
+     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-1/ubuntu $SERIES main" | \
+         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list
+     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-1/ubuntu $SERIES main" | \
+         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list
  else
      # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
      # DO NOT match any lines ending in #wasta
      sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0-$SERIES.list
+        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list
  fi
+
+echo
+echo "*** Removing Older LibreOffice PPAs"
+echo
+rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0*
 
 # Add Skype repository
 if ! [ -e $APT_SOURCES_D/skype-stable.list ];
@@ -282,7 +288,6 @@ fi
 #then
 #    echo 'Acquire::http::No-Cache "True";' > /etc/apt/apt.conf.d/99nocache
 #fi
-
 
 apt-get update
 

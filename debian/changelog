@@ -1,3 +1,11 @@
+wasta-core-bionic (1.2.0) bionic; urgency=medium
+
+  * wasta-initial-setup: adding install of hwe stack
+  * wasta-release: updating to 18.04.2
+  * app-installs.sh: adding LO 6.1 PPA
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 22 Feb 2019 15:21:55 +0300
+
 wasta-core-bionic (1.1.4) bionic; urgency=medium
 
   * app-installs: making 10periodic and 20auto-upgrades changes

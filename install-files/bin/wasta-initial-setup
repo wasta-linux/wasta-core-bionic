@@ -12,6 +12,7 @@
 #         non-interactively.
 #   2018-02-28 rik: calling wasta-reset with logged in user instead of root
 #       - calling app-adjustments.sh script (from wasta-multidesktop) if exists
+#   2019-02-23 rik: installing hwe stack
 #
 # ==============================================================================
 
@@ -78,8 +79,14 @@ CURRENT_USER="${SUDO_USER:-$USER}"
 if [ "$1" == "auto" ];
 then
     AUTO="auto"
+
+    # needed for apt-get
+    YES="--yes"
+    DEBIAN_NONINTERACTIVE="DEBIAN_FRONTEND=noninteractive"
 else
     AUTO=""
+    YES=""
+    DEBIAN_NONINTERACTIVE=""
 fi
 
 echo
@@ -127,6 +134,13 @@ then
     echo
     exit 1
 fi
+
+echo
+echo "*** Ensuring HWE stack is installed"
+echo
+$DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
+    linux-generic-hwe-18.04 \
+    xserver-xorg-hwe-18.04"
 
 echo
 echo "*** Calling app-installs.sh script"
