@@ -306,7 +306,9 @@ fi
 # ------------------------------------------------------------------------------
 # disable release-upgrade prompts
 # ------------------------------------------------------------------------------
-#https://askubuntu.com/questions/611837/why-does-software-updates-affects-do-release-upgrade-command-in-terminal#612226
+
+# can't be put in /etc/update-manager/release-upgrades.d/ since not respected:
+#   https://askubuntu.com/questions/611837/why-does-software-updates-affects-do-release-upgrade-command-in-terminal#612226
 if [ -e /etc/update-manager/release-upgrades ];
 then
     echo

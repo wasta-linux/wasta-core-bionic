@@ -24,16 +24,18 @@ case "$1" in
         # Needed here instead of just installed by install so that will be
         #   in place BEFORE next user dist-upgrade
 
-        FILE=/etc/dpkg/dpkg.cfg.d/dpkg-force-confnew-preinst
+        DEBIAN_FRONT=$(grep "DEBIAN_FRONTEND" /etc/environment || true;)
+        echo "Debian frontend: $DEBIAN_FRONT"
+        if [ "$DEBIAN_FRONT" = "" ];
+        then
+            echo
+            echo "*** Setting DEBIAN_FRONTEND=noninteractive"
+            echo
+            sed -i -e '$a DEBIAN_FRONTEND=noninteractive' /etc/environment
+        fi
 
-        sed -i -e '$a force-confnew' \
-            -e '\@force-confnew@d' \
-            $FILE
-
-        export DEBIAN_FRONTEND=noninteractive
-        # Set dpkg to use noninteractive frontend
-        # not needed, seems, but keeping for reference
-        # dpkg-reconfigure debconf --frontend=noninteractive
+        # To handle current session
+        dpkg-reconfigure debconf --frontend=noninteractive
     ;;
 
     abort-upgrade)
