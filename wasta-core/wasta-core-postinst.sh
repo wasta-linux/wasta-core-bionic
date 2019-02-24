@@ -215,23 +215,6 @@ then
     rm -f $APT_SOURCES_D/wasta-linux-ubuntu-wasta-testing-$SERIES*
 fi
 
-# apt-get adjustments
-# 2017-09-28 rik: updating to NOT replace files if they already exist.
-#   We don't want to reset them IF the user has manually modified these files.
-
-# have apt-get not get language translation files for faster updates.
-if ! [ -e /etc/apt/apt.conf.d/99translations ];
-then
-    echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/99translations
-fi
-
-# have apt-get not use proxy: Internet caching by ISPs cache broken packages
-#   causing apt-get to get hash sum mismatches, badsigs, etc.
-if ! [ -e /etc/apt/apt.conf.d/99brokenproxy ];
-then
-    echo 'Acquire::BrokenProxy "True";' > /etc/apt/apt.conf.d/99brokenproxy
-fi
-
 # remove any partial updates: these are often broken if they exist
 if [ -e /var/lib/apt/lists/partial/ ];
 then
@@ -323,6 +306,7 @@ fi
 # ------------------------------------------------------------------------------
 # disable release-upgrade prompts
 # ------------------------------------------------------------------------------
+#https://askubuntu.com/questions/611837/why-does-software-updates-affects-do-release-upgrade-command-in-terminal#612226
 if [ -e /etc/update-manager/release-upgrades ];
 then
     echo

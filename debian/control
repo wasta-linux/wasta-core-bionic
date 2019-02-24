@@ -9,7 +9,7 @@ Homepage: https://github.com/wasta-linux/wasta-core-bionic
 Package: wasta-core-bionic
 Architecture: all
 Depends: gnupg, ${shlibs:Depends}, ${misc:Depends}
-Recommends: debconf-utils, qt5-style-plugins, wasta-backup, wasta-menus, wasta-offline, wasta-remastersys, wasta-resources-core
+Recommends: apt-xapian-index, debconf-utils, qt5-style-plugins, synaptic, wasta-backup, wasta-menus, wasta-offline, wasta-remastersys, wasta-resources-core
 Description: Wasta-Linux 18.04 Core
  Wasta-Linux core system setup package for Ubuntu 18.04 'bionic'
  .
