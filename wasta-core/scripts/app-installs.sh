@@ -253,34 +253,6 @@ then
     apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 fi
 
-FILE="/etc/apt/apt.conf.d/10periodic"
-if [ -e "$FILE" ];
-then
-    # Set Apt Update-Package-Lists = 7
-    sed -i -e 's@\(Update-Package-Lists\).*@\1 "7";@' $FILE
-
-    # Set Apt Download-Upgradeable-Packages = 0
-    sed -i -e 's@\(Download-Upgradeable-Packages\).*@\1 "0";@' $FILE
-
-    # Set Apt Unattended-Upgrade = 0 (setting may not exist)
-    sed -i -e '$a APT::Periodic::Unattended-Upgrade "0";' \
-        -i -e '\@Unattended-Upgrade@d' $FILE
-fi
-
-FILE="/etc/apt/apt.conf.d/20auto-upgrades"
-if [ -e "$FILE" ];
-then
-    # Set Apt Update-Package-Lists = 7
-    sed -i -e 's@\(Update-Package-Lists\).*@\1 "7";@' $FILE
-
-    # Set Apt Download-Upgradeable-Packages = 0
-    sed -i -e 's@\(Download-Upgradeable-Packages\).*@\1 "0";@' $FILE
-
-    # Set Apt Unattended-Upgrade = 0 (setting may not exist)
-    sed -i -e '$a APT::Periodic::Unattended-Upgrade "0";' \
-        -i -e '\@Unattended-Upgrade@d' $FILE
-fi
-
 # 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
 #   set to True.  So disabling for bionic for now until get more input from
 #   other users (but Ethiopia for example will want this set to False)
