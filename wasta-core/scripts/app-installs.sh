@@ -277,7 +277,7 @@ echo
 echo "*** Install All Updates"
 echo
 
-apt-get $YES dist-upgrade
+$DEBIAN_NONINERACTIVE apt-get $YES dist-upgrade
 
     LASTERRORLEVEL=$?
     if [ "$LASTERRORLEVEL" -ne "0" ];

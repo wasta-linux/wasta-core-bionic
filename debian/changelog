@@ -1,6 +1,8 @@
 wasta-core-bionic (1.2.1) bionic; urgency=medium
 
   * install-files/apt.conf.d: adding for apt adjustments
+  * install-files/dpkg.cfg.d: force-confnew
+  * debian/preinst: set DEBIAN_FRONTEND=noninteractive
 
  -- Rik Shaw <rikshaw76@gmail.com>  Sun, 24 Feb 2019 17:13:41 +0300
 
