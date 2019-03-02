@@ -151,7 +151,7 @@ then
     
     # needed for apt-get
     YES="--yes"
-    DEBIAN_NONINTERACTIVE="DEBIAN_FRONTEND=noninteractive"
+    DEBIAN_NONINTERACTIVE="env DEBIAN_FRONTEND=noninteractive"
 
     # needed for gdebi
     INTERACTIVE="-n"
@@ -287,7 +287,7 @@ $DEBIAN_NONINERACTIVE apt-get $YES dist-upgrade
 
 # ------------------------------------------------------------------------------
 # Standard package installs for all systems
-# ------------------------------------------------------------------------------
+# -----------------------------------------ri-------------------------------------
 
 echo
 echo "*** Standard Installs"

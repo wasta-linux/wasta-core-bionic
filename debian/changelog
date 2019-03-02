@@ -1,3 +1,16 @@
+wasta-core-bionic (1.2.3) bionic; urgency=medium
+
+  * removing 51update-apt-xapian-index-wasta since it may cause
+    heavy cpu use and degrade user experience
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 02 Mar 2019 09:36:21 +0300
+
+wasta-core-bionic (1.2.2) bionic; urgency=medium
+
+  * wasta-system-upgrade: support "auto" as input parameter
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 01 Mar 2019 14:21:44 +0300
+
 wasta-core-bionic (1.2.1) bionic; urgency=medium
 
   * install-files/apt.conf.d: adding for apt adjustments

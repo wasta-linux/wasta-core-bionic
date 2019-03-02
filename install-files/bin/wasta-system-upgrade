@@ -67,8 +67,19 @@ if [ "$(whoami)" != "root" ]; then
 fi
 
 # ------------------------------------------------------------------------------
-# Initial prompt
+# Initial Setup
 # ------------------------------------------------------------------------------
+
+CURRENT_USER="${SUDO_USER:-$USER}"
+
+# if 'auto' parameter passed, run non-interactively
+if [ "$1" == "auto" ];
+then
+    AUTO="auto"
+else
+    AUTO=""
+fi
+
 echo
 echo "========================================================================="
 echo "=== Wasta-Linux System Upgrade =========================================="
@@ -83,7 +94,7 @@ echo "Close this window if you do not want to run this script."
 echo
 read -p "Press <Enter> to continue..."
 
-# Setup Diretory for later reference
+# Setup Directory for later reference
 DIR=/usr/share/wasta-core
 
 # ------------------------------------------------------------------------------
@@ -93,7 +104,7 @@ DIR=/usr/share/wasta-core
 echo
 echo "*** Calling app-installs.sh script"
 echo
-bash $DIR/scripts/app-installs.sh
+bash $DIR/scripts/app-installs.sh $AUTO
 LASTERRORLEVEL=$?
 if [ "$LASTERRORLEVEL" -ne "0" ];
 then
@@ -103,7 +114,7 @@ then
     exit 1
 fi
 
-ADJUST_SCRIPT=/usr/share/wasta-multidesktop/scripts/app-adjustments.sh
+ADJUST_SCRIPT=/usr/share/wasta-multidesktop/scripts/app-adjustments.sh $AUTO
 if [ -e "$ADJUST_SCRIPT" ];
 then
     echo
