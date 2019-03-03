@@ -253,6 +253,30 @@ then
     apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 fi
 
+# Manually add repo keys:
+#   - apt-key no longer supported in scripts so need to use gpg directly.
+#       - Still works 18.04 but warning it may break in the future: however
+#         the direct gpg calls were problematic so keeping same for bionic.
+#   - sending output to null to not scare users
+apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
+
+# add Keyman PPA
+ if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
+ then
+     echo
+     echo "*** Adding Keyman PPA"
+     echo
+     echo "deb http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+         tee $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+     echo "# deb-src http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+         tee -a $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+ else
+     # found, but ensure Keyman PPA ACTIVE (user could have accidentally disabled)
+     # DO NOT match any lines ending in #wasta
+     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
+        $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+ fi
+
 # 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
 #   set to True.  So disabling for bionic for now until get more input from
 #   other users (but Ethiopia for example will want this set to False)
@@ -348,6 +372,7 @@ echo
 # iperf: terminal utility for network bandwidth measuring
 # kdenlive: video editor
 # keepassxc: password manager (xc is the community port that is more up to date)
+# keyman: keyman keyboard app
 # klavaro: typing tutor
 # kmfl-keyboard-ipa: ipa keyboard for kmfl
 # libdvd-pkg: enables DVD playback (downloads and installs libdvdcss2)
@@ -477,6 +502,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     iperf \
     kdenlive \
     keepassxc \
+    keyman \
     klavaro \
     kmfl-keyboard-ipa \
     libdvd-pkg \

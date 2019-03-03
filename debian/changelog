@@ -1,3 +1,9 @@
+wasta-core-bionic (1.2.4) bionic; urgency=medium
+
+  * app-install.sh: add keyman PPA and install keyman
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sun, 03 Mar 2019 19:26:29 +0300
+
 wasta-core-bionic (1.2.3) bionic; urgency=medium
 
   * removing 51update-apt-xapian-index-wasta since it may cause
