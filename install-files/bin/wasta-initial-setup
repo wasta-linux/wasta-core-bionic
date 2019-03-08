@@ -13,6 +13,7 @@
 #   2018-02-28 rik: calling wasta-reset with logged in user instead of root
 #       - calling app-adjustments.sh script (from wasta-multidesktop) if exists
 #   2019-02-23 rik: installing hwe stack
+#   2019-03-08 rik: setting redmond7 as wasta-layout system default
 #
 # ==============================================================================
 
@@ -189,6 +190,14 @@ then
         echo
         exit 1
     fi
+fi
+
+if [ -x /usr/bin/wasta-layout-system ];
+then
+    echo
+    echo "*** Setting wasta-layout cinnamon system default to redmond7"
+    echo
+    wasta-layout-system redmond7
 fi
 
 echo

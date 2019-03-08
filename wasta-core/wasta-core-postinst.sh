@@ -309,6 +309,8 @@ fi
 
 # can't be put in /etc/update-manager/release-upgrades.d/ since not respected:
 #   https://askubuntu.com/questions/611837/why-does-software-updates-affects-do-release-upgrade-command-in-terminal#612226
+
+# also done in wasta-multidesktop to ensure user NEVER faces this prompt
 if [ -e /etc/update-manager/release-upgrades ];
 then
     echo

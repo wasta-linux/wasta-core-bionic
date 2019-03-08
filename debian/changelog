@@ -1,3 +1,10 @@
+wasta-core-bionic (1.2.5) bionic; urgency=medium
+
+  * wasta-initial-setup: if wasta-layout-system exists, set system
+    default to redmond7
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 08 Mar 2019 17:08:45 +0300
+
 wasta-core-bionic (1.2.4) bionic; urgency=medium
 
   * app-install.sh: add keyman PPA and install keyman
