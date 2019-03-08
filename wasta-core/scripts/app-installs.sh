@@ -93,6 +93,7 @@
 #     - Download-Upgradeable-Packages = 0
 #     - Unattended-Upgrade = 0
 #   2019-02-23 rik: adding LO 6.1 PPA, removing LO 6.0 PPA
+#   2019-03-05 rik: add keymanapp/keyman PPA and gpg key
 #
 # ==============================================================================
 
@@ -253,13 +254,6 @@ then
     apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 fi
 
-# Manually add repo keys:
-#   - apt-key no longer supported in scripts so need to use gpg directly.
-#       - Still works 18.04 but warning it may break in the future: however
-#         the direct gpg calls were problematic so keeping same for bionic.
-#   - sending output to null to not scare users
-apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
-
 # add Keyman PPA
  if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
  then
@@ -275,7 +269,10 @@ apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
      # DO NOT match any lines ending in #wasta
      sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
         $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
- fi
+
+    # Manually add Keymanapp PPA key:
+    apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
+fi
 
 # 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
 #   set to True.  So disabling for bionic for now until get more input from
@@ -378,7 +375,7 @@ echo
 # libdvd-pkg: enables DVD playback (downloads and installs libdvdcss2)
 # libreoffice-base:
 # libreoffice-gnome: (bionic only: removed with -gtk3, ensure it is added back)
-# libreoffice-gtk2:
+# libreoffice-gtk3: bionic: -gtk2 can't open samba files
 # libreoffice-sdbc-hsqldb: db backend for LO base
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
@@ -508,7 +505,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     libdvd-pkg \
     libreoffice-base \
         libreoffice-gnome \
-        libreoffice-gtk2 \
+        libreoffice-gtk3 \
         libreoffice-sdbc-hsqldb \
         libreoffice-style-tango \
     libtext-pdf-perl \
