@@ -94,6 +94,9 @@
 #     - Unattended-Upgrade = 0
 #   2019-02-23 rik: adding LO 6.1 PPA, removing LO 6.0 PPA
 #   2019-03-05 rik: add keymanapp/keyman PPA and gpg key
+#   2019-03-12 rik: removing dkms (or else when install shim-signed through
+#       ubiquity will be prompted for setting up secureboot key and since
+#       ubiquity is running as non-interactive it will cause an error
 #
 # ==============================================================================
 
@@ -330,7 +333,6 @@ echo
 # dconf-cli, dconf-tools: gives tools for making settings adjustments
 # debconf-utils: needed for debconf-get-selections, etc. for debconf configure
 # diodon: clipboard manager
-# dkms: "Dynamic Kernel Module Support" (needed by virtualbox, broadcom, etc.)
 # dos2unix: convert line endings of text files to / from windows to unix
 # easytag: GUI ID3 tag editor
 # exfat-fuse, exfat-utils: compatibility for exfat formatted disks
@@ -450,7 +452,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
         dconf-tools \
     debconf-utils \
     diodon \
-    dkms \
     dos2unix \
     easytag \
     exfat-fuse \

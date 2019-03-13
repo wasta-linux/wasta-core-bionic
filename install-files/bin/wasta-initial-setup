@@ -142,7 +142,6 @@ echo
 $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     linux-generic-hwe-18.04 \
     xserver-xorg-hwe-18.04 \
-    virtualbox-guest-dkms-hwe \
     virtualbox-guest-utils-hwe \
     virtualbox-guest-x11-hwe"
 # note: virtualbox-guest-x11-hwe required but has dependency issue:

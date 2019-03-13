@@ -1,3 +1,11 @@
+wasta-core-bionic (1.2.6) bionic; urgency=medium
+
+  * app-installs: removing dkms
+  * app-removals: adding dkms
+  * wasta-initial-setup: NOT adding virtualbox-guest-dkms-hwe
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 12 Mar 2019 21:28:35 +0300
+
 wasta-core-bionic (1.2.5) bionic; urgency=medium
 
   * wasta-initial-setup: if wasta-layout-system exists, set system

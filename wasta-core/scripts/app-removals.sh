@@ -98,6 +98,8 @@ echo
 # checkbox-common:
 #   - but removing it will remove ubuntu-desktop so not removing
 # deja-dup: we use wasta-backup
+# dkms: if installed then ubiquity will fail when installing shim-signed
+#   because will need interaction to setup secureboot keys
 # empathy: chat client
 # fonts-noto-cjk: conflicts with font-manager: newer font-manager from ppa
 #       handles it, but it is too different to use
@@ -128,6 +130,7 @@ echo
 pkgToRemoveListFull="\
     blueman \
     deja-dup \
+    dkms \
     empathy-common \
     fonts-beng* \
         fonts-deva* \
