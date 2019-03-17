@@ -145,7 +145,13 @@ then
     gsettings set org.nemo.window-state sidebar-bookmark-breakpoint \
         "$SAVE_BOOKMARK_BREAKPOINT"
 
-    MSG+="User settings for <b>Cinnamon Desktop</b> reset.\n\n"
+    CINNAMON_ACTIVE=""
+    CINNAMON_ACTIVE=$(wmctrl -m | grep -i Muffin)
+    if [ "$CINNAMON_ACTIVE" ];
+    then
+        MSG+="<b>Cinnamon Active:</b> Restarting...\n\n"
+        cinnamon --replace &
+    fi
 fi
 
 if [ -e /usr/share/xsessions/ubuntu.desktop ] | \
@@ -158,6 +164,7 @@ then
     # --------------------------------------------------------------------------
     SAVE_BACKGROUND=$(gsettings get org.gnome.desktop.background picture-uri)
     SAVE_KEYBOARDS=$(gsettings get org.gnome.desktop.input-sources sources)
+    SAVE_GNOME_FAVORITES=$(gsettings get org.gnome.shell favorite-apps)
 
     # --------------------------------------------------------------------------
     # Reset all shared GNOME and Nautilus dconf settings to defaults
@@ -168,37 +175,53 @@ then
     # schema not defined: gsettings reset-recursively org.gnome.settings-daemon
     dconf reset -f /org/gnome/settings-daemon/
 
+    # not resetting org.gnome.shell.extensions.*:
+    # schema not defined: gsettings reset-recursively org.gnome.shell
+    dconf reset -f /org/gnome/shell/
+
     # --------------------------------------------------------------------------
     # Restore saved shared keys
     # --------------------------------------------------------------------------
     gsettings set org.gnome.desktop.background picture-uri "$SAVE_BACKGROUND"
     gsettings set org.gnome.desktop.input-sources sources "$SAVE_KEYBOARDS"
+    gsettings set org.gnome.shell favorite-apps "$SAVE_GNOME_FAVORITES"
 
-    # --------------------------------------------------------------------------
-    # If detected, reset Gnome-Shell settings to defaults
-    # --------------------------------------------------------------------------
-    # bionic: need to detect on ubuntu.desktop since gnome.desktop not installed
-    # by default
-    if [ -e /usr/share/xsessions/ubuntu.desktop ] | [ -e /usr/share/xsessions/gnome.desktop ];
+    # check what Ubuntu session gives
+    GNOME_ACTIVE=""
+    GNOME_ACTIVE=$(wmctrl -m | grep -i GNOME)
+    if [ "$GNOME_ACTIVE" ];
     then
-        # save Gnome specific settings
-        SAVE_GNOME_FAVORITES=$(gsettings get org.gnome.shell favorite-apps)
-
-        # not resetting org.gnome.shell.extensions.*:
-        #   gsettings reset-recursively org.gnome.shell
-        dconf reset -f /org/gnome/shell/
-
-        # restore Gnome specific settings
-        gsettings set org.gnome.shell favorite-apps "$SAVE_GNOME_FAVORITES"
-
-        MSG+="User settings for <b>GNOME Desktop</b> reset.\n\n"
+        MSG+="<b>GNOME Active:</b> Restarting...\n\n"
+        gnome-shell --replace &
     fi
+
+    MSG+="User settings for <b>GNOME Desktop</b> reset.\n\n"
 fi
 
-if [ -e /usr/share/xsessions/xfce.desktop ];
+if [ -e /usr/share/xsessions/xfce.desktop ]| \
+   [ -e /usr/share/xsessions/xubuntu.desktop ];
 then
-    # XFCE Reset
-    rm -rf $HOME/.config/xfce4
+    # reset light-locker (xubuntu has it lock by default)
+    gsettings reset-recursively apps.light-locker
+
+    XFCE_ACTIVE=""
+    XFCE_ACTIVE=$(wmctrl -m | grep -i Xfwm4)
+    if [ "$XFCE_ACTIVE" ];
+    then
+        MSG+="<b>XFCE Active:</b> Restarting...\n\n"
+        xfce4-panel -q
+        sleep 1
+        killall xfconfd
+        sleep 1
+        rm -r /home/$USER/.config/xfce4/
+        sleep 1
+        xfce4-panel &
+        # dockbarx won't be reset, but since default doesn't use it, no prob
+        # NOTE: COULD call wasta-xfce-layout default yes here but I don't
+        #   think needed and may complicate things
+    else
+        rm -r /home/$USER/.config/xfce4/
+    fi
 
     MSG+="User settings for <b>XFCE Desktop</b> reset.\n\n"
 fi
@@ -212,10 +235,10 @@ to restart to see the changes."
 # Searching for "Name: <Anything>".  If WM isn't initialized, will not match
 
 # Check if GNOME window manager is active
-# GNOME_ACTIVE=$(wmctrl -m | grep GNOME)
+# GNOME_ACTIVE=$(wmctrl -m | grep -i GNOME)
 
 # Check if MUFFIN window manager is active (Cinnamon)
-# MUFFIN_ACTIVE=$(wmctrl -m | grep Muffin)
+# CINNAMON_ACTIVE=$(wmctrl -m | grep -i Muffin)
 
 # ------------------------------------------------------------------------------
 # Finished
