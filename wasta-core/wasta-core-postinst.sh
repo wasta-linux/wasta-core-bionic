@@ -125,6 +125,11 @@ sed -i -e '/#wasta$/! s@.*\(deb .*canonical.com/ubuntu.* '$SERIES' \)@\1@' $APT_
 #   remove when installing)
 sed -i -e '\@http://packages.sil.org/ubuntu@d' $APT_SOURCES
 
+# install repository Keys (done locally since wasta-offline could be active)
+echo
+echo "*** Adding Repository GPG Keys"
+echo
+
 # Manually add repo keys:
 #   - apt-key no longer supported in scripts so need to use gpg directly.
 #       - Still works 18.04 but warning it may break in the future: however
@@ -163,11 +168,6 @@ then
     echo "# deb-src http://packages.sil.org/ubuntu $SERIES-experimental main" | \
         tee -a $APT_SOURCES_D/packages-sil-org-$SERIES-experimental.list
 fi
-
-# install repository Keys (done locally since wasta-offline could be active)
-echo
-echo "*** Adding Repository GPG Keys"
-echo
 
 # add Wasta-Linux PPA
 if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-wasta-$SERIES.list ];

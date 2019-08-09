@@ -223,6 +223,8 @@ fi
 #         the direct gpg calls were problematic so keeping same for bionic.
 #   - sending output to null to not scare users
 apt-key add $DIR/keys/libreoffice-ppa.gpg > /dev/null 2>&1
+apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
+apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 
 # add LibreOffice 6.2 PPA
  if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list ];
@@ -256,29 +258,23 @@ then
 
     echo "deb https://repo.skype.com/deb stable main" | \
         tee $APT_SOURCES_D/skype-stable.list
-    
-    # manually add Skype repo key (since wasta-offline could be active)
-    apt-key add $DIR/keys/skype.gpg > /dev/null 2>&1
 fi
 
 # add Keyman PPA
- if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
- then
-     echo
-     echo "*** Adding Keyman PPA"
-     echo
-     echo "deb http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
-         tee $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
-     echo "# deb-src http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
-         tee -a $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+if ! [ -e $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list ];
+then
+    echo
+    echo "*** Adding Keyman PPA"
+    echo
+    echo "deb http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+        tee $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
+    echo "# deb-src http://ppa.launchpad.net/keymanapp/keyman/ubuntu $SERIES main" | \
+        tee -a $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
  else
      # found, but ensure Keyman PPA ACTIVE (user could have accidentally disabled)
      # DO NOT match any lines ending in #wasta
      sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
         $APT_SOURCES_D/keymanapp-ubuntu-keyman-$SERIES.list
-
-    # Manually add Keymanapp PPA key:
-    apt-key add $DIR/keys/keymanapp-ppa.gpg > /dev/null 2>&1
 fi
 
 # 2017-11-29 rik: NOTE: pfsense caching will NOT work with this no-cache option
