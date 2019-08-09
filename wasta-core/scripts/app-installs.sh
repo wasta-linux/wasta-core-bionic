@@ -97,6 +97,9 @@
 #   2019-03-12 rik: removing dkms (or else when install shim-signed through
 #       ubiquity will be prompted for setting up secureboot key and since
 #       ubiquity is running as non-interactive it will cause an error
+#   2019-08-09 rik: adding LO 6.2 PPA, removing 6.1 PPA
+#     - correcting lo installs to include libreoffice-gnome and libreoffice-gtk2
+#       libreoffice-gtk3 is installed by libreoffice-gnome.
 #
 # ==============================================================================
 
@@ -221,27 +224,28 @@ fi
 #   - sending output to null to not scare users
 apt-key add $DIR/keys/libreoffice-ppa.gpg > /dev/null 2>&1
 
-# add LibreOffice 6.1 PPA
- if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list ];
+# add LibreOffice 6.2 PPA
+ if ! [ -e $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list ];
  then
      echo
-     echo "*** Adding LibreOffice 6.1 PPA"
+     echo "*** Adding LibreOffice 6.2 PPA"
      echo
-     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-1/ubuntu $SERIES main" | \
-         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list
-     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-1/ubuntu $SERIES main" | \
-         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list
+     echo "deb http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
+         tee $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
+     echo "# deb-src http://ppa.launchpad.net/libreoffice/libreoffice-6-2/ubuntu $SERIES main" | \
+         tee -a $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
  else
      # found, but ensure LibreOffice PPA ACTIVE (user could have accidentally disabled)
      # DO NOT match any lines ending in #wasta
      sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1-$SERIES.list
+        $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-2-$SERIES.list
  fi
 
 echo
 echo "*** Removing Older LibreOffice PPAs"
 echo
 rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-0*
+rm -f $APT_SOURCES_D/libreoffice-ubuntu-libreoffice-6-1*
 
 # Add Skype repository
 if ! [ -e $APT_SOURCES_D/skype-stable.list ];
@@ -376,8 +380,8 @@ echo
 # kmfl-keyboard-ipa: ipa keyboard for kmfl
 # libdvd-pkg: enables DVD playback (downloads and installs libdvdcss2)
 # libreoffice-base:
-# libreoffice-gnome: (bionic only: removed with -gtk3, ensure it is added back)
-# libreoffice-gtk3: bionic: -gtk2 can't open samba files
+# libreoffice-gnome: bionic: this includes -gtk3 which is needed for samba
+# libreoffice-gtk2: bionic: note that -gtk2 can't open samba files
 # libreoffice-sdbc-hsqldb: db backend for LO base
 # libreoffice-style-tango: color icon set (more usable than 14.04 "human")
 # libtext-pdf-perl: provides pdfbklt (make A5 booklet from pdf)
@@ -506,7 +510,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     libdvd-pkg \
     libreoffice-base \
         libreoffice-gnome \
-        libreoffice-gtk3 \
+        libreoffice-gtk2 \
         libreoffice-sdbc-hsqldb \
         libreoffice-style-tango \
     libtext-pdf-perl \
