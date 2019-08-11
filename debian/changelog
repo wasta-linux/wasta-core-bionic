@@ -1,3 +1,9 @@
+wasta-core-bionic (1.3.2) bionic; urgency=medium
+
+  * update wasta-release for 18.04.3
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sun, 11 Aug 2019 20:39:05 +0300
+
 wasta-core-bionic (1.3.1) bionic; urgency=medium
 
   * app-installs.sh: correcting install of keymanapp-ppa.gpg key
