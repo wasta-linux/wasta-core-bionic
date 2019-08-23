@@ -100,6 +100,7 @@
 #   2019-08-09 rik: adding LO 6.2 PPA, removing 6.1 PPA
 #     - correcting lo installs to include libreoffice-gnome and libreoffice-gtk2
 #       libreoffice-gtk3 is installed by libreoffice-gnome.
+#   2019-08-23 rik: Add recommendations from Ruben: ncdu, sysstat, tldr
 #
 # ==============================================================================
 
@@ -319,7 +320,7 @@ echo
 
 # adobe-flashplugin: flash
 # aisleriot: solitare game
-# android-tools-adb: terminal utility to communicate to Android devices
+# android-tools-adb: terminal - communicate to Android devices
 # apt-rdepends: reverse dependency lookup
 # audacity lame: audio editing
 # bloom-desktop art-of-reading3: sil bloom
@@ -329,14 +330,14 @@ echo
 # catfish: more in-depth search than nemo gives (gnome-search-tool not available)
 # cheese: webcam recorder, picture taker
 # cifs-utils: "common internet filesystem utils" for fileshare utilities, etc.
-# curl: terminal for download
+# curl: terminal - download utility
 # dconf-cli, dconf-tools: gives tools for making settings adjustments
 # debconf-utils: needed for debconf-get-selections, etc. for debconf configure
 # diodon: clipboard manager
-# dos2unix: convert line endings of text files to / from windows to unix
+# dos2unix: terminal - convert line endings of files to / from windows to unix
 # easytag: GUI ID3 tag editor
 # exfat-fuse, exfat-utils: compatibility for exfat formatted disks
-# extundelete: terminal utility to restore deleted files
+# extundelete: terminal - restore deleted files
 # fbreader: e-book reader
 # font-manager: GUI for managing fonts
 # fonts-crosextra-caladea: metrically compatible with "Cambria"
@@ -346,7 +347,7 @@ echo
 # gddrescue: data recovery tool
 # gdebi: graphical .deb installer
 # gimp: advanced graphics editor
-# git: command-line git
+# git: terminal - command-line git
 # goldendict: more advanced dictionary/thesaurus tool than artha
 # gnome-calculator
 # gnome-clocks: multi-timezone clocks, timers, alarms
@@ -360,15 +361,15 @@ echo
 # gucharmap: gnome character map (traditional)
 # gufw: GUI for "uncomplicated firewall"
 # hardinfo: system profiler
-# hddtemp: harddrive temp checker
+# hddtemp: terminal - harddrive temp checker
 # hfsprogs: for apple hfs compatiblity
 # htop: process browser
 # httrack: website download utility
-# imagemagick: terminal utilty for image resizing, etc. (needed for nemo
+# imagemagick: terminal - image resizing, etc. (needed for nemo
 #   image resize action)
 # inkscape: vector graphics editor
-# inotify-tools: terminal utility to watch for file changes
-# iperf: terminal utility for network bandwidth measuring
+# inotify-tools: terminal - watch for file changes
+# iperf: terminal - network bandwidth measuring
 # kdenlive: video editor
 # keepassxc: password manager (xc is the community port that is more up to date)
 # keyman: keyman keyboard app
@@ -387,27 +388,31 @@ echo
 # mtp-tools: media-transfer-protocol tools: needed for smartphones
 # myspell-en-gb: spell checker for English (UK): needed for Libre Office
 # nautilus-compare: nautilus integration with meld
+# ncdu: terminal - ncurses disk usage analyzer tool
 # nethogs: CLI network monitor showing per application net usage
 # net-tools: terminal - basic utilities like ifconfig
-# pandoc: general markup converter
+# pandoc: terminal - general markup converter
 # papirus-icon-theme:
 # pinta: MS Paint alternative: more simple for new users than gimp
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
 # redshift-gtk: redshift for blue light reduction
 # rhythmbox: music manager
 # shotwell: photo editor / manager (can edit single files easily)
-# silcc: Terminal - SIL consistent changes
+# silcc: terminal - SIL consistent changes
 # simplescreenrecorder: screen recorder 
 # skypeforlinux: skype
 # soundconverter: convert audio formats
 # sound-juicer: rip CDs
-# ssh: remote access
+# ssh: terminal - remote access
 # synaptic: more advanced package manager
 #   - apt-xapian-index: for synpatic indexing
-# teckit: Terminal: SIL teckit
-# testdisk: photorec tool for recovery of deleted files
+# sysstat: terminal - provides sar: system activity reporter
+# teckit: terminal - SIL teckit
+# testdisk: terminal - photorec tool for recovery of deleted files
 # thunderbird xul-ext-lightning: GUI email client
-# traceroute: terminal utility
+# tldr: terminal - gives 'tldr' summary of manpages
+# tlp: laptop power savings
+# traceroute: terminal
 # ttf-mscorefonts-installer: installs standard Microsoft fonts
 # ubiquity-frontend-gtk: add here so not needed to be downloaded by
 #   wasta-remastersys or if needs to be updated by app-adjustments.sh
@@ -416,7 +421,7 @@ echo
 # ubuntu-restricted-extras: mp3, flash, etc.
 # ubuntu-wallpapers-*: wallpaper collections
 # uget uget-integrator: GUI download manager (DTA in Firefox abandoned)
-# vim-tiny: terminal text editor (don't want FULL vim or else in main menu)
+# vim-tiny: terminal - text editor (don't want FULL vim or else in main menu)
 # vlc: play any audio or video files
 # wasta-backup: GUI for rdiff-backup
 # wasta-ibus-bionic: wasta customization of ibus
@@ -425,11 +430,11 @@ echo
 # wasta-papirus papirus-icon-theme: more 'modern' icon theme
 # wasta-remastersys: create ISO of system
 # wasta-resources-core: wasta-core documentation and resources
-# wavemon: terminal utility for wireless network diagonstics
-# xmlstarlet: terminal utility for reading / writing to xml files
-# xsltproc: xslt, xml conversion program
+# wavemon: terminal - for wireless network diagonstics
+# xmlstarlet: terminal - reading / writing to xml files
+# xsltproc: terminal - xslt, xml conversion program
 # xul-ext-lightning: Thunderbird Lightning (calendar) Extension
-# youtube-dl: terminal utility for youtube / video downloads
+# youtube-dl: terminal - youtube / video downloads
 # zim, python-appindicator: wiki style note taking app
 
 $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
@@ -515,6 +520,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     mkusb-nox \
     modem-manager-gui \
     mtp-tools \
+    ncdu \
     nethogs \
     net-tools \
     pandoc \
@@ -531,10 +537,13 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     soundconverter \
     sound-juicer \
     ssh \
+    sysstat \
     synaptic apt-xapian-index \
     teckit \
     testdisk \
     thunderbird xul-ext-lightning \
+    tldr \
+    tlp \
     traceroute \
     ttf-mscorefonts-installer \
     ubiquity-frontend-gtk \
