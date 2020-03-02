@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.0) bionic; urgency=medium
+
+  * wasta-release update to 18.04.4
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 02 Mar 2020 10:24:54 +0300
+
 wasta-core-bionic (1.3.3) bionic; urgency=medium
 
   * app-installs.sh: add terminal utils from Ruben
