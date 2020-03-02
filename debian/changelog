@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.1) bionic; urgency=medium
+
+  * 2020 logo updates
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 02 Mar 2020 15:28:25 +0300
+
 wasta-core-bionic (1.4.0) bionic; urgency=medium
 
   * wasta-release update to 18.04.4
