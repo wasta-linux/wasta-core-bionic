@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.3) bionic; urgency=medium
+
+  * converted logo text to path so scales better
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 21 Mar 2020 16:38:18 +0300
+
 wasta-core-bionic (1.4.2) bionic; urgency=medium
 
   * padded logo
