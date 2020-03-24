@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.4) bionic; urgency=medium
+
+  * app-installs.sh: remove skypeforlinux (still keep repo), add pngcrush
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 24 Mar 2020 14:59:39 +0300
+
 wasta-core-bionic (1.4.3) bionic; urgency=medium
 
   * converted logo text to path so scales better

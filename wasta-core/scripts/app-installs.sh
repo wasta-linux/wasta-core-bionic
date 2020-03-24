@@ -101,6 +101,7 @@
 #     - correcting lo installs to include libreoffice-gnome and libreoffice-gtk2
 #       libreoffice-gtk3 is installed by libreoffice-gnome.
 #   2019-08-23 rik: Add recommendations from Ruben: ncdu, sysstat, tldr
+#   2020-03-24 rik: Add pngcrush, remove skypeforlinux (we still add the repo)
 #
 # ==============================================================================
 
@@ -393,6 +394,7 @@ echo
 # net-tools: terminal - basic utilities like ifconfig
 # pandoc: terminal - general markup converter
 # papirus-icon-theme:
+# pngcrush: shrink / optimize png files
 # pinta: MS Paint alternative: more simple for new users than gimp
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
 # redshift-gtk: redshift for blue light reduction
@@ -400,7 +402,6 @@ echo
 # shotwell: photo editor / manager (can edit single files easily)
 # silcc: terminal - SIL consistent changes
 # simplescreenrecorder: screen recorder 
-# skypeforlinux: skype
 # soundconverter: convert audio formats
 # sound-juicer: rip CDs
 # ssh: terminal - remote access
@@ -526,6 +527,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     pandoc \
     papirus-icon-theme \
     pinta \
+    pngcrush \
     python-appindicator \
     qt5-style-plugins \
     redshift-gtk \
@@ -533,7 +535,6 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     shotwell \
     silcc \
     simplescreenrecorder \
-    skypeforlinux \
     soundconverter \
     sound-juicer \
     ssh \
