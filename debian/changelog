@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.5) bionic; urgency=medium
+
+  * update 22 px logo
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 24 Mar 2020 15:15:45 +0300
+
 wasta-core-bionic (1.4.4) bionic; urgency=medium
 
   * app-installs.sh: remove skypeforlinux (still keep repo), add pngcrush

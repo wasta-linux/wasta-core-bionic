@@ -16,7 +16,7 @@
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="wl.svg"
-   inkscape:export-filename="/data/1-ai-data/dev/wasta-images/wasta-images/2019-logos/w-dark-22.png"
+   inkscape:export-filename="/data/1-ai-data/dev/wasta-images/wasta-images/2020-logos/wl-22.png"
    inkscape:export-xdpi="2.0599999"
    inkscape:export-ydpi="2.0599999"
    style="enable-background:new">
@@ -30,7 +30,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.5"
-     inkscape:cx="-982.14886"
+     inkscape:cx="547.27579"
      inkscape:cy="458.18931"
      inkscape:document-units="px"
      inkscape:current-layer="g1042"
@@ -119,13 +119,6 @@
        id="path921"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csc" />
-    <ellipse
-       style="fill:#ffffff;fill-opacity:0.00171533;stroke:#bebebe;stroke-width:0.26458332;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="ellipse923"
-       cx="437.78748"
-       cy="270.27301"
-       rx="15.501633"
-       ry="20.312483" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot931"
@@ -151,13 +144,6 @@
        id="path907"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="csc" />
-    <ellipse
-       style="fill:#ffffff;fill-opacity:0.00171533;stroke:#bebebe;stroke-width:0.26458332;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="ellipse909"
-       cx="437.78748"
-       cy="270.27301"
-       rx="15.501633"
-       ry="20.312483" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot917"
@@ -181,19 +167,16 @@
        style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="M 135.46666,42.999991 A 118.53332,118.53332 0 0 0 16.933337,161.53333 118.53332,118.53332 0 0 0 135.46666,280.06664 118.53332,118.53332 0 0 0 254,161.53333 118.53332,118.53332 0 0 0 135.46666,42.999991 Z m 0,11.1125 A 107.42083,107.42083 0 0 1 242.8875,161.53333 107.42083,107.42083 0 0 1 135.46666,268.95414 107.42083,107.42083 0 0 1 28.045836,161.53333 107.42083,107.42083 0 0 1 135.46666,54.112491 Z"
        id="circle1030"
-       inkscape:connector-curvature="0" />
-    <ellipse
-       style="fill:#ffffff;fill-opacity:0.00171533;stroke:#bebebe;stroke-width:0.26458332;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="ellipse1032"
-       cx="437.78748"
-       cy="270.27301"
-       rx="15.501633"
-       ry="20.312483" />
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="2.3571429"
+       inkscape:export-ydpi="2.3571429" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot1040"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:arial;-inkscape-font-specification:arial;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       transform="matrix(0.26458333,0,0,0.26458333,0,161.53331)"><flowRegion
+       transform="matrix(0.26458333,0,0,0.26458333,0,161.53331)"
+       inkscape:export-xdpi="2.3571429"
+       inkscape:export-ydpi="2.3571429"><flowRegion
          id="flowRegion1036"><rect
            id="rect1034"
            width="661.6499"
