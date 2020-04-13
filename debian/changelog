@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.7) bionic; urgency=medium
+
+  * correct resolution of remastersys splash
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 13 Apr 2020 17:02:49 -0500
+
 wasta-core-bionic (1.4.6) bionic; urgency=medium
 
   * wasta-reset: cleaning up cinnamon --replace process
