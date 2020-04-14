@@ -356,6 +356,7 @@ echo
 # gnome-logs: GUI log viewer
 # gnome-maps: GUI map viewer
 # gnome-nettool: network tool GUI (traceroute, lookup, etc)
+# gnome-packagekit: simple alternative to Synaptic
 # gnome-system-monitor:
 # gparted: partition manager
 # grsync: GUI rsync tool
@@ -366,8 +367,7 @@ echo
 # hfsprogs: for apple hfs compatiblity
 # htop: process browser
 # httrack: website download utility
-# imagemagick: terminal - image resizing, etc. (needed for nemo
-#   image resize action)
+# imagemagick: terminal - image resizing, etc. (needed for nemo resize action)
 # inkscape: vector graphics editor
 # inotify-tools: terminal - watch for file changes
 # iperf: terminal - network bandwidth measuring
@@ -394,7 +394,7 @@ echo
 # net-tools: terminal - basic utilities like ifconfig
 # pandoc: terminal - general markup converter
 # papirus-icon-theme:
-# pngcrush: shrink / optimize png files
+# pngcrush: terminal - png size reducer
 # pinta: MS Paint alternative: more simple for new users than gimp
 # qt5-style-plugins: needed for qt5 / gtk theme compatibility
 # redshift-gtk: redshift for blue light reduction
@@ -489,6 +489,7 @@ $DEBIAN_NONINERACTIVE bash -c "apt-get $YES install \
     gnome-logs \
     gnome-maps \
     gnome-nettool \
+    gnome-packagekit \
     gnome-screenshot \
     gnome-system-monitor \
     gparted \

@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.8) bionic; urgency=medium
+
+  * adding gnome-packagekit
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 14 Apr 2020 14:06:38 -0500
+
 wasta-core-bionic (1.4.7) bionic; urgency=medium
 
   * correct resolution of remastersys splash
