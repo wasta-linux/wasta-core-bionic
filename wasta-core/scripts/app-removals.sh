@@ -43,6 +43,7 @@
 #       needing them will need to add them back in their wasta-custom-* packages
 #   2018-09-05 rik: removing snapd (over 800MB in /var/lib/snapd no way to
 #       disable auto-updates).
+#   2020-08-09 rik: removing snapd differently in case users want to keep
 #
 # ==============================================================================
 
@@ -113,7 +114,6 @@ echo
 # landscape-client-ui-install: pay service only for big corporations
 # mpv: media player - not sure how this got installed
 # nemo-preview: confusing for some
-# snapd: see below
 # totem: not needed as vlc handles all video/audio
 # transmission: normal users doing torrents probably isn't preferred
 # ttf-* fonts: non-english font families
@@ -180,11 +180,10 @@ pkgToRemoveListFull="\
     landscape-client-ui-install \
     mpv \
     nemo-preview \
-    snapd \
     totem \
         totem-common \
         totem-plugins \
-    transmission-common \
+    transmission transmission-common \
     unity-webapps-common \
     webbrowser-app \
     whoopsie"
@@ -192,7 +191,26 @@ pkgToRemoveListFull="\
 pkgToRemoveList=""
 for pkgToRemove in $(echo $pkgToRemoveListFull); do
   $(dpkg --status $pkgToRemove &> /dev/null)
-  if [[ $? -eq 0 ]]; then
+  # errno:0 = exists. errno:1 = not exists. errno:2 = invalid name (eg: with *)
+  errno=$?
+  if [[ $errno -eq 0 ]] || [[ $errno -eq 2 ]]; then
+    pkgToRemoveList="$pkgToRemoveList $pkgToRemove"
+  fi
+done
+
+apt-get $YES purge $pkgToRemoveList
+
+# ------------------------------------------------------------------------------
+# separately remove 'snapd' since some users may want to keep
+# ------------------------------------------------------------------------------
+
+pkgToRemoveListFull="snapd"
+pkgToRemoveList=""
+for pkgToRemove in $(echo $pkgToRemoveListFull); do
+  $(dpkg --status $pkgToRemove &> /dev/null)
+  # errno:0 = exists. errno:1 = not exists. errno:2 = invalid name (eg: with *)
+  errno=$?
+  if [[ $errno -eq 0 ]] || [[ $errno -eq 2 ]]; then
     pkgToRemoveList="$pkgToRemoveList $pkgToRemove"
   fi
 done
@@ -212,28 +230,6 @@ if [ ! -x /usr/bin/whoopsie ];
 then
     rm -rf /var/lib/whoopsie
 fi
-
-# ------------------------------------------------------------------------------
-# snap cleanup
-# ------------------------------------------------------------------------------
-
-#2018-09-05 rik: removing snapd from Wasta-Linux 18.04: installed
-#   it takes up huge space (/var/lib/snapd is approx. 800MB) and 
-#   there is no way to disable auto-updates which our users are not
-#   going to be happy with
-#
-# rik: these snaps don't integrate well with the theme and are slow to start
-#   so for 18.04 we will REMOVE them and install their traditional counterparts
-#snap remove \
-#    gnome-calculator \
-#    gnome-characters \
-#    gnome-logs \
-#    gnome-system-monitor \
-#    gnome-3-26-1604 \
-#    gtk-common-themes
-
-#rm /var/lib/snapd/snaps/*.snap
-#rm /var/lib/snapd/seed/snaps/*.snap
 
 # ------------------------------------------------------------------------------
 # run autoremove to cleanout unneeded dependent packages
