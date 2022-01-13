@@ -1,3 +1,9 @@
+wasta-core-bionic (1.4.11) bionic; urgency=medium
+
+  * adding skype-2021.gpg key install
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Thu, 13 Jan 2022 10:51:56 -0600
+
 wasta-core-bionic (1.4.10) bionic; urgency=medium
 
   * app-removals: separately removing snapd in case users want to keep

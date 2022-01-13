@@ -4,7 +4,7 @@
 # wasta-core: wasta-core-postinst.sh
 #
 #   This script is automatically run by the postinst configure step on
-#       installation of wasta-core-xenial.  It can be manually re-run, but is
+#       installation of wasta-core-*.  It can be manually re-run, but is
 #       only intended to be run at package installation.
 #
 #   2015-10-09 rik: initial script for wasta-core-xenial
@@ -37,6 +37,7 @@
 #   2018-08-31 rik: remove Wasta-Testing PPA if found (normal users AND devs
 #       should not have this hanging around: devs will need to re-add when
 #       wanting to do some testing from the PPA)
+#   2022-01-13 rik: adding skype-2021.gpg key install
 #
 # ==============================================================================
 
@@ -137,6 +138,7 @@ echo
 #   - sending output to null to not scare users
 apt-key add $DIR/keys/sil-2016.gpg > /dev/null 2>&1
 apt-key add $DIR/keys/wasta-linux-ppa.gpg > /dev/null 2>&1
+apt-key add $DIR/keys/skype-2021.gpg > /dev/null 2>&1
 
 # add SIL repository
 if ! [ -e $APT_SOURCES_D/packages-sil-org-$SERIES.list ];
